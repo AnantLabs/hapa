@@ -8,7 +8,7 @@ using log4net;
 namespace Common
 {
     /// <summary>
-    /// put below info into app.config or web.config
+    /// make sure you put below info into app.config or web.config
     /// <example>
     /*
      * 
