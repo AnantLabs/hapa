@@ -11,6 +11,7 @@ namespace Common
     /// put below info into app.config or web.config
     /// <example>
     /*
+     * 
 <configuration>
 <configSections>
 <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" requirePermission="false"/>
@@ -67,5 +68,6 @@ namespace Common
         {
             return obj == null ? Log() : LogManager.GetLogger(obj.GetType());
         }
+
     }
 }
