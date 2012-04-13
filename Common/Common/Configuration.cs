@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 
@@ -20,10 +21,12 @@ namespace Common
         /// <returns></returns>
         public static string Settings(string setting, string defaultString = null)
         {
+
             string value = ConfigurationManager.AppSettings[setting];
             if (!string.IsNullOrEmpty(value))
                 return value;
             return defaultString;
         }
-
+    }
 }
+
