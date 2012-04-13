@@ -3,12 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 11
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{929354BF-A8D1-4F74-9035-D9BC1FF4CB8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumActions", "SeleniumActions\SeleniumActions.csproj", "{089D4CD4-71B4-4759-AD4F-4A8498C3B4F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClient", "AutoClient\AutoClient.csproj", "{5A66A149-DD0C-4FE9-B7CF-F63AF1D6F880}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{089D4CD4-71B4-4759-AD4F-4A8498C3B4F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089D4CD4-71B4-4759-AD4F-4A8498C3B4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089D4CD4-71B4-4759-AD4F-4A8498C3B4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089D4CD4-71B4-4759-AD4F-4A8498C3B4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A66A149-DD0C-4FE9-B7CF-F63AF1D6F880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A66A149-DD0C-4FE9-B7CF-F63AF1D6F880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A66A149-DD0C-4FE9-B7CF-F63AF1D6F880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A66A149-DD0C-4FE9-B7CF-F63AF1D6F880}.Release|Any CPU.Build.0 = Release|Any CPU
 		{929354BF-A8D1-4F74-9035-D9BC1FF4CB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{929354BF-A8D1-4F74-9035-D9BC1FF4CB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{929354BF-A8D1-4F74-9035-D9BC1FF4CB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
