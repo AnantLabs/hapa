@@ -15,6 +15,7 @@ namespace Common
         /// LogFormat="%newline%date [%thread] %-5level [%message%]%newline"
         /// LogPath = "c:\temp"
         /// LogName = "Automation.log"
+        /// 
         /// </summary>
         /// <param name="setting"></param>
         /// <param name="defaultString"></param>
