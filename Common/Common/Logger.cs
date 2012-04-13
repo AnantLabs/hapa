@@ -40,7 +40,8 @@ namespace Common
     public class Logger
     {
         private static Logger _instance;
-        private Logger(){
+        private Logger()
+        {
             log4net.Config.XmlConfigurator.Configure();
         }
 
