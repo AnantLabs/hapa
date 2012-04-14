@@ -1,8 +1,12 @@
 ﻿<Window x:Class="Client.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Automation Client" Height="640" Width="480" WindowStartupLocation="CenterScreen" WindowState="Minimized" ResizeMode="CanMinimize">
+    
     <Grid>
         
+        
+        <TextBox HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" />
+
     </Grid>
 </Window>

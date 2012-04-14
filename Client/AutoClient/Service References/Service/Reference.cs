@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AutoClient.Communication {
+namespace AutoClient.Service {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Communication.ServiceSoap")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.ServiceSoap")]
     public interface ServiceSoap {
         
         // CODEGEN: Generating message contract since element name xmlFormatCommand from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Command", ReplyAction="*")]
-        AutoClient.Communication.CommandResponse Command(AutoClient.Communication.CommandRequest request);
+        AutoClient.Service.CommandResponse Command(AutoClient.Service.CommandRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -27,12 +27,12 @@ namespace AutoClient.Communication {
     public partial class CommandRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Command", Namespace="http://tempuri.org/", Order=0)]
-        public AutoClient.Communication.CommandRequestBody Body;
+        public AutoClient.Service.CommandRequestBody Body;
         
         public CommandRequest() {
         }
         
-        public CommandRequest(AutoClient.Communication.CommandRequestBody Body) {
+        public CommandRequest(AutoClient.Service.CommandRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -61,12 +61,12 @@ namespace AutoClient.Communication {
     public partial class CommandResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="CommandResponse", Namespace="http://tempuri.org/", Order=0)]
-        public AutoClient.Communication.CommandResponseBody Body;
+        public AutoClient.Service.CommandResponseBody Body;
         
         public CommandResponse() {
         }
         
-        public CommandResponse(AutoClient.Communication.CommandResponseBody Body) {
+        public CommandResponse(AutoClient.Service.CommandResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -89,12 +89,12 @@ namespace AutoClient.Communication {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ServiceSoapChannel : AutoClient.Communication.ServiceSoap, System.ServiceModel.IClientChannel {
+    public interface ServiceSoapChannel : AutoClient.Service.ServiceSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceSoapClient : System.ServiceModel.ClientBase<AutoClient.Communication.ServiceSoap>, AutoClient.Communication.ServiceSoap {
+    public partial class ServiceSoapClient : System.ServiceModel.ClientBase<AutoClient.Service.ServiceSoap>, AutoClient.Service.ServiceSoap {
         
         public ServiceSoapClient() {
         }
@@ -116,15 +116,15 @@ namespace AutoClient.Communication {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        AutoClient.Communication.CommandResponse AutoClient.Communication.ServiceSoap.Command(AutoClient.Communication.CommandRequest request) {
+        AutoClient.Service.CommandResponse AutoClient.Service.ServiceSoap.Command(AutoClient.Service.CommandRequest request) {
             return base.Channel.Command(request);
         }
         
         public string Command(string xmlFormatCommand) {
-            AutoClient.Communication.CommandRequest inValue = new AutoClient.Communication.CommandRequest();
-            inValue.Body = new AutoClient.Communication.CommandRequestBody();
+            AutoClient.Service.CommandRequest inValue = new AutoClient.Service.CommandRequest();
+            inValue.Body = new AutoClient.Service.CommandRequestBody();
             inValue.Body.xmlFormatCommand = xmlFormatCommand;
-            AutoClient.Communication.CommandResponse retVal = ((AutoClient.Communication.ServiceSoap)(this)).Command(inValue);
+            AutoClient.Service.CommandResponse retVal = ((AutoClient.Service.ServiceSoap)(this)).Command(inValue);
             return retVal.Body.CommandResult;
         }
     }
