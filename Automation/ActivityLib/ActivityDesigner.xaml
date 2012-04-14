@@ -1,0 +1,19 @@
+﻿<sap:ActivityDesigner x:Class="ActivityBaseLib.ActivityDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation">
+    <Grid>
+        
+        <Grid.Background>
+            
+                
+            <LinearGradientBrush>
+                <GradientStop Color="White" Offset="0.33"></GradientStop>
+                <GradientStop Color="Orange" Offset="0.00"></GradientStop>
+                <GradientStop Color="Green" Offset="0.99"></GradientStop>
+            </LinearGradientBrush>
+
+        </Grid.Background>        
+    </Grid>
+</sap:ActivityDesigner>

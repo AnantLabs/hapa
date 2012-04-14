@@ -1,0 +1,114 @@
+﻿<ActivityLib:ActionDesignerBase x:Class="ActivityLib.ActionSetDesigner"
+                                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+                                mc:Ignorable="d"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:ActivityLib="clr-namespace:ActivityLib"
+                                d:DesignWidth="300"
+                                Width="Auto"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                AllowDrop="True">
+    <sap:ActivityDesigner.Resources>
+        <ActivityLib:ImageConverter x:Key="ResultConverter" />
+        <ActivityLib:DataTreeConverter x:Key="DataTreeConverter" />
+        <DataTemplate x:Key="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <Image HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Height="16"
+                       Width="16"
+                       Source="{Binding Path=ModelItem.Result,  Converter={StaticResource ResultConverter}, ConverterParameter=In}" />
+                <TextBlock Name="IdText"
+                           HorizontalAlignment="Center"
+                           Text="{Binding Path=ModelItem.MyId}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="Expanded">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+
+                    <!--<Image HorizontalAlignment="Left"
+                           VerticalAlignment="Stretch"
+                           Height="16"
+                           Width="16"
+                           Source="{Binding Path=ModelItem.Result,  Converter={StaticResource ResultConverter}, ConverterParameter=In}" />-->
+                    <TextBlock Name="IdText"
+                               HorizontalAlignment="Center"
+                               Text="{Binding Path=ModelItem.MyId}" />
+                </StackPanel>
+                <TreeView ItemsSource="{Binding Path=ModelItem.Data, Converter={StaticResource DataTreeConverter},ConverterParameter=In}"
+                          Background="Transparent"
+                          Name="DataTree"
+                          AllowDrop="True"
+                          PreviewDragEnter="TreeViewPreviewDragEnter"
+                          PreviewDragOver="TreeViewPreviewDragEnter"
+                          PreviewDrop="TreeViewPreviewDrop"
+                          Height="Auto"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
+                          VerticalContentAlignment="Stretch">
+                    <!--<TreeViewItem Header="No Data">
+
+                    </TreeViewItem>-->
+                </TreeView>
+                <sap:WorkflowItemsPresenter Items="{Binding Path=ModelItem.Activities}">
+                    <sap:WorkflowItemsPresenter.SpacerTemplate>
+                        <DataTemplate>
+                            <Label Name="seperator"
+                                   Height="10"
+                                   ToolTip="Please drop activities here." />
+
+                        </DataTemplate>
+                    </sap:WorkflowItemsPresenter.SpacerTemplate>
+                    <sap:WorkflowItemsPresenter.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"
+                                        AllowDrop="True">
+
+                            </StackPanel>
+                            <!--<StackPanel Orientation="Vertical"
+                                        AllowDrop="True"
+                                        Height="32" />-->
+                        </ItemsPanelTemplate>
+                    </sap:WorkflowItemsPresenter.ItemsPanel>
+                </sap:WorkflowItemsPresenter>
+            </StackPanel>
+        </DataTemplate>
+        <Style x:Key="ExpandOrCollapsedStyle"
+               TargetType="{x:Type ContentPresenter}">
+            <Setter Property="ContentTemplate"
+                    Value="{DynamicResource Collapsed}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=ShowExpanded}"
+                             Value="true">
+                    <Setter Property="ContentTemplate"
+                            Value="{DynamicResource Expanded}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </sap:ActivityDesigner.Resources>
+    <Grid>
+        <ContentPresenter Style="{DynamicResource ExpandOrCollapsedStyle}"
+                          Content="{Binding}" />
+        <Grid.Background>
+            <!--<ImageBrush Stretch="None"
+                        ImageSource="{Binding Path=ModelItem.Result,  Converter={StaticResource ResultConverter}, ConverterParameter=In}"
+                        AlignmentX="Left"
+                        AlignmentY="Top" >
+                
+            </ImageBrush>-->
+
+            <LinearGradientBrush>
+				<GradientStop Color="White" Offset="0.66"></GradientStop>
+				<GradientStop Color="Green" Offset="0.00"></GradientStop>
+				<GradientStop Color="Orange" Offset="0.99"></GradientStop>
+			</LinearGradientBrush>
+        </Grid.Background>
+    </Grid>
+</ActivityLib:ActionDesignerBase>

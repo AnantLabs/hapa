@@ -1,0 +1,276 @@
+﻿<Activity mc:Ignorable="sads sap" x:Class="MainFlow"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:local="clr-namespace:Automation"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:s1="clr-namespace:System;assembly=System"
+ xmlns:s2="clr-namespace:System;assembly=System.Xml"
+ xmlns:s3="clr-namespace:System;assembly=System.Core"
+ xmlns:s4="clr-namespace:System;assembly=System.ServiceModel"
+ xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities"
+ xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System"
+ xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel"
+ xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core"
+ xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:sl="clr-namespace:System.Linq;assembly=System.Core"
+ xmlns:st="clr-namespace:System.Text;assembly=mscorlib"
+          xmlns:al="clr-namespace:ActivityLib;assembly=ActivityLib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="command" Type="InArgument(x:String)" />
+    <x:Property Name="name" Type="InArgument(x:String)" />
+    <x:Property Name="id" Type="InArgument(x:String)" />
+    <x:Property Name="returnMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>1002,722</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Flowchart sad:XamlDebuggerXmlReader.FileName="C:\C:\Hapa\Automation\Automation\MainFlow.xaml" sap:VirtualizedContainerService.HintSize="962,642">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">400,112.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">430,187.5 430,266.5</av:PointCollection>
+        <x:Double x:Key="Width">947.5</x:Double>
+        <x:Double x:Key="Height">606.5</x:Double>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID12</x:Reference>
+    </Flowchart.StartNode>
+    <FlowSwitch x:TypeArguments="x:String" x:Name="__ReferenceID12" Expression="[name]" sap:VirtualizedContainerService.HintSize="70,87">
+      <FlowSwitch.Default>
+        <FlowStep x:Name="__ReferenceID0">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">9,250.5</av:Point>
+              <av:Size x:Key="ShapeSize">242,59</av:Size>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="242,59">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[returnMessage]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["&lt;Result Result='Error' Reason='Unknown Command:[" &amp; name &amp; "]' /&gt;"]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+        </FlowStep>
+      </FlowSwitch.Default>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <av:Point x:Key="ShapeLocation">395,266.5</av:Point>
+          <av:Size x:Key="ShapeSize">70,87</av:Size>
+          <av:PointCollection x:Key="Default">395,288.25 365,288.25 365,280 251,280</av:PointCollection>
+          <av:PointCollection x:Key="TestConnector">412.5,266.5 412.5,236.5 130,236.5 130,119.5</av:PointCollection>
+          <av:PointCollection x:Key="GetDataByIDConnector">465,288.25 830,288.25 830,166</av:PointCollection>
+          <av:PointCollection x:Key="SetDataConnector">447.5,266.5 447.5,236.5 640,236.5 640,66</av:PointCollection>
+          <av:PointCollection x:Key="RequestCommandConnector">465,310 495,310 495,320 702.5,320</av:PointCollection>
+          <av:PointCollection x:Key="SetResultConnector">465,331.75 495,331.75 495,390 647,390</av:PointCollection>
+          <av:PointCollection x:Key="GetInstancesInfoConnector">395,310 365,310 365,360 235.5,360</av:PointCollection>
+          <av:PointCollection x:Key="GetComputersInfoConnector">395,331.75 365,331.75 365,430 234.5,430</av:PointCollection>
+          <av:PointCollection x:Key="SetInstanceInfoConnector">412.5,353.5 412.5,500 276,500</av:PointCollection>
+          <av:PointCollection x:Key="StartInstanceConnector">430,353.5 430,534</av:PointCollection>
+          <av:PointCollection x:Key="DeleteInstanceConnector">447.5,353.5 447.5,460 644,460</av:PointCollection>
+          <av:PointCollection x:Key="StopInstanceConnector">447.5,353.5 447.5,504 720,504 720,534</av:PointCollection>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <FlowStep x:Key="SetData" x:Name="__ReferenceID3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">527.5,14</av:Point>
+            <av:Size x:Key="ShapeSize">225,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:SetData InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="225,52" MyId="4cc89f9a-c1b1-4cbf-90fe-9f0de44cd6a8" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:SetData>
+      </FlowStep>
+      <FlowStep x:Key="GetDataByID" x:Name="__ReferenceID2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">712.5,114</av:Point>
+            <av:Size x:Key="ShapeSize">235,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:GetDataByID InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="235,52" MyId="3977b5d3-fed7-42d5-ac99-791a28714b54" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:GetDataByID>
+      </FlowStep>
+      <FlowStep x:Key="Test" x:Name="__ReferenceID1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">9,60.5</av:Point>
+            <av:Size x:Key="ShapeSize">242,59</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="242,59">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[returnMessage]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">["&lt;Result Result='Success' /&gt;"]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+      </FlowStep>
+      <FlowStep x:Key="RequestCommand" x:Name="__ReferenceID4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">702.5,294</av:Point>
+            <av:Size x:Key="ShapeSize">235,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:RequestCommand InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="235,52" MyId="c9968d32-1ed8-4beb-9207-6262fd5add8e" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:RequestCommand>
+      </FlowStep>
+      <FlowStep x:Key="SetResult" x:Name="__ReferenceID5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">647,364</av:Point>
+            <av:Size x:Key="ShapeSize">226,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:SetResult InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="226,52" MyId="2a9b9b61-1fcc-45e2-bf20-59efdd1fdfe8" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:SetResult>
+      </FlowStep>
+      <FlowStep x:Key="GetInstancesInfo" x:Name="__ReferenceID6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">4.5,334</av:Point>
+            <av:Size x:Key="ShapeSize">231,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:GetInstancesInfo InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="231,52" MyId="87882524-56c4-4853-9c09-f7a8fa1ca44a" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:GetInstancesInfo>
+      </FlowStep>
+      <FlowStep x:Key="GetComputersInfo" x:Name="__ReferenceID7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">5.5,404</av:Point>
+            <av:Size x:Key="ShapeSize">229,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:GetComputersInfo InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="229,52" MyId="e5aeffb9-c9e5-40e7-a5fd-a627a583137f" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:GetComputersInfo>
+      </FlowStep>
+      <FlowStep x:Key="SetInstanceInfo" x:Name="__ReferenceID8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">44,474</av:Point>
+            <av:Size x:Key="ShapeSize">232,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:SetInstanceInfo InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="232,52" MyId="2b522d84-3eeb-44dc-ace9-7dffd64d1044" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:SetInstanceInfo>
+      </FlowStep>
+      <FlowStep x:Key="StartInstance" x:Name="__ReferenceID9">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">316,534</av:Point>
+            <av:Size x:Key="ShapeSize">228,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:StartInstance InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="228,52" MyId="d298f00d-c5d3-45f1-8363-83dcb6f523f8" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:StartInstance>
+      </FlowStep>
+      <FlowStep x:Key="DeleteInstance" x:Name="__ReferenceID11">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">644,434</av:Point>
+            <av:Size x:Key="ShapeSize">232,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:DeleteInstance InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="232,52" MyId="70be774c-e1f6-4974-a360-f44ebe1020c3" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:DeleteInstance>
+      </FlowStep>
+      <FlowStep x:Key="StopInstance" x:Name="__ReferenceID10">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">605,534</av:Point>
+            <av:Size x:Key="ShapeSize">230,52</av:Size>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <al:StopInstance InstanceId="{x:Null}" Result="{x:Null}" UIObject="{x:Null}" AllowDropItemType="GUIFormat" sap:VirtualizedContainerService.HintSize="230,52" MyId="0c8e9742-f398-4b71-a27c-d6e88f1bd7f2" OnError="Continue">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </al:StopInstance>
+      </FlowStep>
+    </FlowSwitch>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <x:Reference>__ReferenceID6</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <x:Reference>__ReferenceID8</x:Reference>
+    <x:Reference>__ReferenceID9</x:Reference>
+    <x:Reference>__ReferenceID10</x:Reference>
+    <x:Reference>__ReferenceID11</x:Reference>
+  </Flowchart>
+</Activity>

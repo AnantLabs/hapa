@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Editor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HAPA")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Editor")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]

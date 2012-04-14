@@ -1,0 +1,62 @@
+﻿<sap:ActivityDesigner x:Class="ActivityLib.TestSuiteActivityDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation">
+    <sap:ActivityDesigner.Resources>
+        <DataTemplate x:Key="Collapsed">
+            <TextBlock HorizontalAlignment="Center" Text="{Binding Path=ModelItem.name}"></TextBlock>
+        </DataTemplate>
+        <DataTemplate x:Key="Expanded">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=ModelItem.name}" ></TextBlock>
+                
+                <sap:WorkflowItemsPresenter Items="{Binding Path=ModelItem.children}">
+                    <sap:WorkflowItemsPresenter.SpacerTemplate>
+                        <DataTemplate>
+                            <!--<Ellipse Width="10"
+                                     Height="10"
+                                     Fill="Black" />-->
+                            <Label Name="seperator"
+                                   Width="10"
+                                   Height="20"
+                                   ToolTip="Please drop activities here." />
+                        </DataTemplate>
+                    </sap:WorkflowItemsPresenter.SpacerTemplate>
+                    <sap:WorkflowItemsPresenter.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" AllowDrop="True" />
+                        </ItemsPanelTemplate>
+                    </sap:WorkflowItemsPresenter.ItemsPanel>
+                </sap:WorkflowItemsPresenter>
+            </StackPanel>
+        </DataTemplate>
+        <Style x:Key="ExpandOrCollapsedStyle"
+               TargetType="{x:Type ContentPresenter}">
+            <Setter Property="ContentTemplate"
+                    Value="{DynamicResource Collapsed}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=ShowExpanded}"
+                             Value="true">
+                    <Setter Property="ContentTemplate"
+                            Value="{DynamicResource Expanded}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </sap:ActivityDesigner.Resources>
+    <Grid>
+        <ContentPresenter Style="{DynamicResource ExpandOrCollapsedStyle}"
+                          Content="{Binding}" />
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="White"
+                              Offset="0.66"></GradientStop>
+                <GradientStop Color="Green"
+                              Offset="0.00"></GradientStop>
+                <GradientStop Color="Orange"
+                              Offset="0.99"></GradientStop>
+            </LinearGradientBrush>
+
+        </Grid.Background>
+    </Grid>
+</sap:ActivityDesigner>
