@@ -43,6 +43,12 @@
     <Compile Include="Click.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutoClient\AutoClient.csproj">
+      <Project>{5a66a149-dd0c-4fe9-b7cf-f63af1d6f880}</Project>
+      <Name>AutoClient</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
