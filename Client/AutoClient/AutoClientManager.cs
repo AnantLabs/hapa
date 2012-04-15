@@ -77,8 +77,12 @@ namespace AutoClient
 
         public void Dispose()
         {
+            if(client!=null)
+                if (!client.State.Equals(CommunicationState.Closed))
+                    client.Close();
             if (task != null) 
                 task.Dispose();
+            _instance = null;
         }
     }
 }

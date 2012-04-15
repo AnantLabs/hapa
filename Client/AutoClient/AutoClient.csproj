@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="ActionsFactory.cs" />
     <Compile Include="AutoClientManager.cs" />
     <Compile Include="IAutoObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
