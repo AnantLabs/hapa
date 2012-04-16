@@ -42,8 +42,9 @@ namespace Common
         }
 
         public const string AttributeName = "Name";
-        public const String AttributeIcon = "Icon";
+        public const string AttributeIcon = "Icon";
         public const string AttributeId = "_id";
+        public const string AttributeParentId = "ParentId";
         public const string AttributeDescription = "Description";
         
     }
