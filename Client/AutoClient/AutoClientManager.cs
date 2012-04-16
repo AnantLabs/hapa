@@ -5,6 +5,8 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using Common;
 
 namespace AutoClient
 {
@@ -19,6 +21,7 @@ namespace AutoClient
         
         private AutoClientManager()
         {
+            ActionsFactory factory = new ActionsFactory();
             client.Open();
             task = new Task(() =>
             {
@@ -34,21 +37,44 @@ namespace AutoClient
                     //    throw new OperationCanceledException(token);
                     //}
 
-                    
-                    if (client.State.Equals(CommunicationState.Closed))
-                        client.Open();
-                    //TODO connect and register here, get computer info and submit
-                    client.Command("<Command Name=\"Register\" />");
+
+                    if(!Register())
+                        continue;
                     while (true)
                     {
-                        //TODO request command here, if communication error happen, break
-                        client.Command("<Command Name=\"RequestCommand\" />");
+                        DoOneCommand(factory);
                     }
 
                 }
                 //}, token);
             });
             task.Start();
+        }
+
+        private bool Register()
+        {
+            try
+            {
+                if (client.State.Equals(CommunicationState.Closed))
+                    client.Open();
+                //TODO connect and register here, get computer info and submit
+                client.Command("<Command Name=\"Register\" />");
+            }
+            catch (Exception e)
+            {
+                Thread.Sleep(17 * 1000);
+                return false;
+            }
+            return true;
+        }
+
+        private void DoOneCommand(ActionsFactory factory)
+        {
+            //TODO request command here, if communication error happen, break
+            string xmlformatCommand = client.Command("<Command Name=\"RequestCommand\" />");
+            Result result = factory.DoCommand(XElement.Parse(xmlformatCommand));
+            //TODO construct the result string
+            client.Command("<Command Name=\"\" />");
         }
 
         public void ObserverRegister(IAutoObserver observer)
