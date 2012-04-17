@@ -3,6 +3,7 @@
 /Common/Common/bin
 /MongoDB/MongoDB/obj
 /Client/SeleniumActions/obj
+/Client/SeleniumActions/bin
 /Editor/Editor/bin
 /Editor/Editor/obj
 /Client/Client/bin
@@ -14,4 +15,3 @@
 /Automation/Automation/obj
 /Automation/Editor/bin
 /Automation/Editor/obj
-/Client/SeleniumActions/bin
