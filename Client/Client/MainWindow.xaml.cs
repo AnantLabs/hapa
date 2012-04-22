@@ -30,5 +30,10 @@ namespace Client
         {
             Close();
         }
+
+        public void update(string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

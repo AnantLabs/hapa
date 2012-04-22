@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AutoClient
 {
-    interface IAutoObserver
+    public interface IAutoObserver
     {
         void update(string message);
     }
