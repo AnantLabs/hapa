@@ -38,6 +38,22 @@
     <Reference Include="Common">
       <HintPath>..\..\Lib\Common.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB">
+      <HintPath>..\..\Lib\MongoDB.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\Lib\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\Lib\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\..\Lib\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -47,6 +63,12 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\..\Lib\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\..\Lib\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

@@ -120,7 +120,7 @@ namespace MongoDB
         {
             string id = bd.GetValue(Const.AttributeId, null);
             MongoCursor<BsonDocument> kids = _contents.Find(Query.EQ(Const.AttributeParentId, id));
-            return (kids.Count()>0)
+            return (kids.Count() > 0);
         }
 
         public bool Remove(string id)
