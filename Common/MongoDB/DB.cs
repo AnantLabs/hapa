@@ -209,23 +209,23 @@ namespace MongoDB
             return result;
         }
 
-        public void Add<T>(T item) where T : class, new()
+        public void Add<T>(T item) 
         {
 
             _database.GetCollection<T>(typeof(T).Name).Insert(item);
         }
 
-        public void Add<T>(IEnumerable<T> items) where T : class, new()
+        public void Add<T>(IEnumerable<T> items)
         {
             _database.GetCollection<T>(typeof(T).Name).Insert(items);
         }
 
-        public void Save<T>(T item) where T : class, new()
+        public void Save<T>(T item) 
         {
             _database.GetCollection<T>(typeof(T).Name).Save(item);
         }
 
-        public void Update<T>(T item) where T : class, new()
+        public void Update<T>(T item) 
         {
             Save(item);
         }
