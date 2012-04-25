@@ -10,21 +10,21 @@ namespace Automation.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "Start your automation test with us.";
 
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your quintessential app description page.";
+            ViewBag.Message = "About this framework and us.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your quintessential contact page.";
+            ViewBag.Message = "Contact us if you need to.";
 
             return View();
         }

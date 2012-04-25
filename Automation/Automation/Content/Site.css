@@ -120,6 +120,8 @@ footer {
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
     margin: 20px 0;
+    background: url("../Images/logo.jpg") left no-repeat;
+    padding-left: 48px;
 }
 
 .site-title a, .site-title a:hover, .site-title a:active {
@@ -476,6 +478,7 @@ ul#social li {
     header .site-title {
         margin: 10px;
         text-align: center;
+        //background: url("../Images/logo.jpg") no-repeat;
     }
 
     /* login */
