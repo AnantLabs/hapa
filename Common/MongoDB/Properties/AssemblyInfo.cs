@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MongoDB")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hapa")]
+[assembly: AssemblyCompany("Sage UK LTD")]
 [assembly: AssemblyProduct("MongoDB")]
-[assembly: AssemblyCopyright("Copyright © CC")]
+[assembly: AssemblyCopyright("Copyright © Sage UK LTD 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ad9475fb-1a67-4d1e-8d94-703f364e62a6")]
+[assembly: Guid("29c40848-9f97-4cc3-9edd-73070bc0f4fe")]
 
 // Version information for an assembly consists of the following four values:
 //
