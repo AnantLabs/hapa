@@ -32,7 +32,7 @@ namespace Automation.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MongoMembershipProvider.ValidateUser(model.UserName, model.Password))
+                if (MongoMembershipProvider.ValidateUser1(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     return Json(new { success = true, redirect = returnUrl });
@@ -56,7 +56,7 @@ namespace Automation.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MongoMembershipProvider.ValidateUser(model.UserName, model.Password))
+                if (MongoMembershipProvider.ValidateUser1(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
@@ -108,7 +108,7 @@ namespace Automation.Controllers
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus = MembershipCreateStatus.Success;
-                MongoMembershipProvider.CreateUser(
+                MongoMembershipProvider.CreateUser1(
                     model.UserName, 
                     model.Password, 
                     model.Email, 
@@ -144,7 +144,7 @@ namespace Automation.Controllers
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
-                MongoMembershipProvider.CreateUser(model.UserName, model.Password, model.Email, passwordQuestion: null, passwordAnswer: null, isApproved: true, providerUserKey: null, status: out createStatus);
+                MongoMembershipProvider.CreateUser1(model.UserName, model.Password, model.Email, passwordQuestion: null, passwordAnswer: null, isApproved: true, providerUserKey: null, status: out createStatus);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
@@ -183,7 +183,7 @@ namespace Automation.Controllers
                 bool changePasswordSucceeded;
                 try
                 {
-                    MongoMembershipUser currentUser = MongoMembershipProvider.GetUser(User.Identity.Name, userIsOnline: true);
+                    MongoMembershipUser currentUser = MongoMembershipProvider.GetUser1(User.Identity.Name, userIsOnline: true);
                     changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
                 }
                 catch (Exception)

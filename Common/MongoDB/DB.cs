@@ -48,7 +48,7 @@ namespace MongoDB
                 }
             });
 
-            task.Start();
+            //task.Start();
 
         }
 
@@ -192,21 +192,57 @@ namespace MongoDB
         //    return result;
         //}
 
-        public void Find<T>(string id, ref T result)
+        public T Find<T>(string id)
         {
-            
-            result = _database.GetCollection<T>(typeof(T).Name).FindOneById( new BsonString(id));            
+
+            return Find<T>(Const.AttributeId, id);
         }
 
-        public List<T> FindKids<T>(string parentId)
+        public T Find<T>(params string[] param)
         {
-            MongoCursor<T> cursor = _database.GetCollection<T>(typeof(T).Name).Find(Query.EQ(Const.AttributeParentId, parentId));
+            return  _database.GetCollection<T>(typeof(T).Name).FindOne(QueryCondition(param));
+        }
+
+        public List<T> Finds<T>(IMongoQuery qc)
+        {
+            
+            MongoCursor<T> cursor = _database.GetCollection<T>(typeof(T).Name).Find(qc);
             List<T> result = new List<T>();
             foreach (T t in cursor)
             {
                 result.Add(t);
             }
             return result;
+        }
+
+        public IMongoQuery QueryCondition(params string[] para )
+        {
+            int aLength = para.Length / 2;
+            var qc = new QueryComplete[aLength];
+            for (int i = 0; i < para.Length; i++)
+            {
+                string keyName = para[i];
+                if (i + 1 > para.Length - 1)
+                    break;
+                int number = i / 2;
+                i++;
+                
+                BsonValue value = new BsonString( para[i]);
+                qc[number] = Query.EQ(keyName, value);
+            }
+            return Query.And(qc);
+        }
+
+        public List<T> FindKids<T>(string parentId)
+        {
+            return Finds<T>(Query.EQ(Const.AttributeParentId, parentId));
+            //MongoCursor<T> cursor = _database.GetCollection<T>(typeof(T).Name).Find(Query.EQ(Const.AttributeParentId, parentId));
+            //List<T> result = new List<T>();
+            //foreach (T t in cursor)
+            //{
+            //    result.Add(t);
+            //}
+            //return result;
         }
 
         public void Add<T>(T item) 

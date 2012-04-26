@@ -14,7 +14,7 @@ namespace Automation.Membership
         {
             get
             {
-                return "Automation";
+                return "MongoMembershipProvider";
             }
             set
             {
@@ -33,17 +33,57 @@ namespace Automation.Membership
             throw new NotImplementedException();
         }
 
-        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
+        public static MongoMembershipUser CreateUser1(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
             string id = Guid.NewGuid().ToString();
             DateTime dt = new DateTime().ToLocalTime();
+
+            MongoMembershipUser newUser = new MongoMembershipUser
+            {
+                //ApplicationId = _AppId,
+                UserName = username,
+                LoweredUserName = username.ToLowerInvariant(),
+                //Password = EncodePassword(password, (int)PasswordFormat, passwordKey),
+                Password = password,
+                //EncodedPassword = EncodePassword(password, (int)PasswordFormat, passwordKey),
+                //PasswordSalt = passwordKey,
+                PasswordAnswer = passwordAnswer, //EncodePassword(passwordAnswer, (int)PasswordFormat, passwordKey),
+                PasswordQuestion = passwordQuestion,
+                //PasswordFormat = (int)PasswordFormat,
+                //PasswordFormatString = PasswordFormat.ToString(),
+                Email = email,
+                LoweredEmail = email.ToLowerInvariant(),
+
+                IsApproved = isApproved,
+                IsLockedOut = false,
+                IsAnonymous = false,
+
+                LastActivityDate = dt,
+                LastLoginDate = dt,
+                LastLockoutDate = dt,
+                LastPasswordChangedDate = dt,
+
+                FailedPasswordAnswerAttemptCount = 0,
+                FailedPasswordAttemptCount = 0,
+                FailedPasswordAnswerAttemptWindowStart = dt,
+                FailedPasswordAttemptWindowStart = dt,
+
+                CreateDate = dt,
+                _id = id,
+                ParentId = "0000000000000"
+
+            };
             
-            MongoMembershipUser newUser = new MongoMembershipUser(this.Name, username, id, email, passwordQuestion, null, isApproved, false, dt, dt, dt, dt, dt);
-            newUser._id = id;
-            newUser.ParentId = "0000000000000";
             DB.GetInstance().Add<MongoMembershipUser>(newUser);
             status = MembershipCreateStatus.Success;
             return newUser;
+        }
+
+        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
+        {
+            status = MembershipCreateStatus.ProviderError;
+            return null;
+            //return (MembershipUser)MongoMembershipProvider.CreateUser1(username, password, email, passwordQuestion, passwordAnswer, isApproved, providerUserKey, out status);
         }
 
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
@@ -53,12 +93,12 @@ namespace Automation.Membership
 
         public override bool EnablePasswordReset
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public override bool EnablePasswordRetrieval
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
@@ -86,6 +126,12 @@ namespace Automation.Membership
             throw new NotImplementedException();
         }
 
+        public static MongoMembershipUser GetUser1(string username, bool userIsOnline)
+        {
+            return DB.GetInstance().Find<MongoMembershipUser>("UserName", username);
+            //throw new NotImplementedException();
+        }
+
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
             throw new NotImplementedException();
@@ -103,42 +149,42 @@ namespace Automation.Membership
 
         public override int MaxInvalidPasswordAttempts
         {
-            get { throw new NotImplementedException(); }
+            get { return 6; }
         }
 
         public override int MinRequiredNonAlphanumericCharacters
         {
-            get { throw new NotImplementedException(); }
+            get { return 1; }
         }
 
         public override int MinRequiredPasswordLength
         {
-            get { throw new NotImplementedException(); }
+            get { return 6; }
         }
 
         public override int PasswordAttemptWindow
         {
-            get { throw new NotImplementedException(); }
+            get { return 10; }
         }
 
         public override MembershipPasswordFormat PasswordFormat
         {
-            get { throw new NotImplementedException(); }
+            get { return MembershipPasswordFormat.Clear; }
         }
 
         public override string PasswordStrengthRegularExpression
         {
-            get { throw new NotImplementedException(); }
+            get { return "(?=.{6,})(?=(.*\\d){1,})"; }
         }
 
         public override bool RequiresQuestionAndAnswer
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public override bool RequiresUniqueEmail
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public override string ResetPassword(string username, string answer)
@@ -152,6 +198,11 @@ namespace Automation.Membership
         }
 
         public override void UpdateUser(MembershipUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ValidateUser1(string username, string password)
         {
             throw new NotImplementedException();
         }
