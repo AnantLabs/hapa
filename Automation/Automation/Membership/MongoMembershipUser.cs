@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Common;
 
 namespace Automation.Membership
 {
-    public class MongoMembershipUser 
+    public class MongoMembershipUser : SuperData
     {
-        public string _id { get; set; }
-        public string ParentId { get; set; }
+        //public string Id { get; set; }
+        //public string ParentId { get; set; }
+        public string DataType { get { return "MongoMembershipUser"; } }
         public string UserName { get; set; }
         public string LoweredUserName { get; set; }
         public string MobileAlias { get; set; }
@@ -51,6 +53,7 @@ namespace Automation.Membership
             if (!Password.Equals(p1))
                 return false;
             Password = p2;
+            LastPasswordChangedDate = DateTime.Now;
             MongoDB.DB.GetInstance().Update<MongoMembershipUser>(this);
             return true;
         }

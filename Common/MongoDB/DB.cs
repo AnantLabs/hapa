@@ -258,6 +258,7 @@ namespace MongoDB
 
         public void Save<T>(T item) 
         {
+            
             _database.GetCollection<T>(typeof(T).Name).Save(item);
         }
 

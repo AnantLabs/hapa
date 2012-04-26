@@ -36,7 +36,7 @@ namespace Automation.Membership
         public static MongoMembershipUser CreateUser1(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
             string id = Guid.NewGuid().ToString();
-            DateTime dt = new DateTime().ToLocalTime();
+            DateTime dt = DateTime.Now;
 
             MongoMembershipUser newUser = new MongoMembershipUser
             {
@@ -69,7 +69,7 @@ namespace Automation.Membership
                 FailedPasswordAttemptWindowStart = dt,
 
                 CreateDate = dt,
-                _id = id,
+                Id = id,
                 ParentId = "0000000000000"
 
             };
@@ -204,12 +204,17 @@ namespace Automation.Membership
 
         public static bool ValidateUser1(string username, string password)
         {
-            throw new NotImplementedException();
+            MongoMembershipUser currentUser = MongoMembershipProvider.GetUser1(username, false);
+            if (currentUser == null)
+                return false;
+            if (currentUser.Password.Equals(password))
+                return true;
+            return false;
         }
 
         public override bool ValidateUser(string username, string password)
         {
-            throw new NotImplementedException();
+            return MongoMembershipProvider.ValidateUser1(username, password);
         }
     }
 }
