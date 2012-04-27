@@ -16,39 +16,40 @@ namespace AutoClient
         private List<IAutoObserver> observerList = new List<IAutoObserver>();
         //static CancellationTokenSource cancell = new CancellationTokenSource();
         //CancellationToken token = cancell.Token;
-        Service.ServiceSoapClient client = new Service.ServiceSoapClient();
+        Service.ServiceSoapClient client;
+        //Service.ServiceSoapClient client = new Service.ServiceSoapClient();
         Task task;
         
         private AutoClientManager()
         {
             ActionsFactory factory = new ActionsFactory();
-            client.Open();
-            task = new Task(() =>
-            {
-                while (true)
-                {
-                    //bool cancelled = token.WaitHandle.WaitOne(5 * 60 * 1000);
-                    //DateTime now = DateTime.Now;
+            //client.Open();
+            //task = new Task(() =>
+            //{
+            //    while (true)
+            //    {
+            //        //bool cancelled = token.WaitHandle.WaitOne(5 * 60 * 1000);
+            //        //DateTime now = DateTime.Now;
 
                     
 
-                    //if (cancelled)
-                    //{
-                    //    throw new OperationCanceledException(token);
-                    //}
+            //        //if (cancelled)
+            //        //{
+            //        //    throw new OperationCanceledException(token);
+            //        //}
 
 
-                    if(!Register())
-                        continue;
-                    while (true)
-                    {
-                        DoOneCommand(factory);
-                    }
+            //        if(!Register())
+            //            continue;
+            //        while (true)
+            //        {
+            //            DoOneCommand(factory);
+            //        }
 
-                }
-                //}, token);
-            });
-            task.Start();
+            //    }
+            //    //}, token);
+            //});
+            //task.Start();
         }
 
         private bool Register()
@@ -58,7 +59,11 @@ namespace AutoClient
                 if (client.State.Equals(CommunicationState.Closed))
                     client.Open();
                 //TODO connect and register here, get computer info and submit
-                client.Command("<Command Name=\"Register\" />");
+                XElement x = XElement.Parse("<Command Name=\"Register\" />");
+                AddEnvironmentVarsToXElement(x);
+                Configuration.AddSettingsToXElement(x);
+                string result = client.Command(x.ToString());
+                //TODO check the result, it may bring back some configuration changes.
             }
             catch (Exception e)
             {
@@ -66,6 +71,26 @@ namespace AutoClient
                 return false;
             }
             return true;
+        }
+
+        public string DoTest()
+        {
+            XElement x = XElement.Parse("<Command Name=\"Register\" />");
+            Configuration.Set("TestKey", "TestValue");
+            AddEnvironmentVarsToXElement(x);
+            Configuration.AddSettingsToXElement(x);
+            return x.ToString();
+        }
+
+        private static void AddEnvironmentVarsToXElement(XElement x)
+        {
+            foreach (var v in System.Environment.GetEnvironmentVariables().Keys)
+            {
+                string key = v.ToString().Replace("(", "").Replace(")", "");
+                string value = System.Environment.GetEnvironmentVariables()[v].ToString().Replace("(", "").Replace(")", "");
+                x.SetAttributeValue(key, value);
+                //result += v.ToString() + " = " + System.Environment.GetEnvironmentVariables()[v]+" \n";
+            }
         }
 
         private void DoOneCommand(ActionsFactory factory)

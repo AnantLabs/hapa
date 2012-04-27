@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Common
 {
@@ -26,6 +27,19 @@ namespace Common
             if (!string.IsNullOrEmpty(value))
                 return value;
             return defaultString;
+                       
+        }
+        public static void Set(string key, string value)
+        {
+            ConfigurationManager.AppSettings.Set(key, value);
+        }
+
+        public static void AddSettingsToXElement(XElement x)
+        {
+            foreach (var key in ConfigurationManager.AppSettings.Keys)
+            {
+                x.SetAttributeValue(key.ToString(), Configuration.Settings(key.ToString(),null));
+            }
         }
     }
 }

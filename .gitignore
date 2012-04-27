@@ -16,3 +16,7 @@
 /Automation/Editor/bin
 /Automation/Editor/obj
 /Automation/Automation/publish
+
+/Lib/Common.dll
+/Lib/MongoDB.dll
+/Lib/Common.dll

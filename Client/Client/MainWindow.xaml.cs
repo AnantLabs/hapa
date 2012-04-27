@@ -54,7 +54,8 @@ namespace Client
 
         private void DoActions(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            string envs = AutoClientManager.GetInstance().DoTest();
+            this.LogPanel.Text = envs;
         }
 
         public void update(string message)
