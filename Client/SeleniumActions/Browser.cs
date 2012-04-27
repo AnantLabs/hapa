@@ -11,6 +11,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace SeleniumActions
 {
@@ -34,7 +35,7 @@ namespace SeleniumActions
                 StartBrowser();
             }
             DismissUnexpectedAlert();
-            List<string> bs = browser.WindowHandles;
+            ReadOnlyCollection<string> bs = browser.WindowHandles;
             if (bs.Count == 1)
             {
                 browser.SwitchTo().Window(bs[0]);
@@ -57,7 +58,13 @@ namespace SeleniumActions
 
         public void Clear()
         {
-
+            foreach (var item in pool.Values)
+            {
+                if(item.GetType().Name.Contains("Hashtable")){
+                    ((Hashtable)item).Clear();
+                }
+            }
+            pool.Clear();
         }
 
         public IWebElement GetWebElement(string tag, params string[] key_value)
@@ -67,9 +74,10 @@ namespace SeleniumActions
 
         public string Snapshot()
         {
-            IJavaScriptExecutor js = GetCurrentBrowser() as IJavaScriptExecutor;
-            Response screenshotResponse = js.ExecuteScript(DriverCommand.Screenshot, null);
-            return screenshotResponse.Value.ToString();
+            return ((ITakesScreenshot)GetCurrentBrowser()).GetScreenshot().AsBase64EncodedString;
+            //IJavaScriptExecutor js = GetCurrentBrowser() as IJavaScriptExecutor;
+            //Response screenshotResponse = js.ExecuteScript(DriverCommand.Screenshot, null);
+            //return screenshotResponse.Value.ToString();
         }
 
         private void DismissUnexpectedAlert()
