@@ -44,6 +44,33 @@ namespace SeleniumActions
             {
                 browser.SwitchTo().Window(bs[bs.Count - 1]);
             }
+            
+            return browser;
+        }
+
+        public IWebDriver SwitchToAnotherBrowser()
+        {
+            if (browser == null)
+            {
+                CloseBrowser();
+                StartBrowser();
+            }
+            DismissUnexpectedAlert();
+            ReadOnlyCollection<string> bs = browser.WindowHandles;
+            if (bs.Count == 1)
+            {
+                browser.SwitchTo().Window(bs[0]);
+                return browser;
+            }
+            string currentHandle = browser.CurrentWindowHandle;
+            foreach (string handle in bs)
+            {
+                if (!currentHandle.Equals(handle))
+                {
+                    browser.SwitchTo().Window(handle);
+                    break;
+                }
+            }
 
             return browser;
         }
@@ -70,6 +97,7 @@ namespace SeleniumActions
         public IWebElement GetWebElement(string tag, params string[] key_value)
         {
             //TODO get object from object pool? Multithread?
+            return null;
         }
 
         public string Snapshot()
@@ -113,7 +141,7 @@ namespace SeleniumActions
                 browser = new FirefoxDriver();
             if (browserType.Equals("Chrome"))
                 browser = new ChromeDriver();
-
+            browser.Navigate().GoToUrl(Configuration.Settings("DefaultURL","about:blank"));
             MaximiseBrowser();
         }
 
@@ -122,7 +150,7 @@ namespace SeleniumActions
             browser.Manage().Window.Maximize();
         }
 
-        private void CloseBrowser()
+        public void CloseBrowser()
         {
             if (browser != null)
                 browser.Quit();
@@ -130,12 +158,29 @@ namespace SeleniumActions
 
             string browserType = Configuration.Settings("BrowserType", "IE");
             if (browserType.Equals("IE"))
-                Process.Start("taskkill /IM iexplore.exe");
-            if (browserType.Equals("Firefox"))
-                Process.Start("taskkill /IM firefox.exe");
-            if (browserType.Equals("Chrome"))
-                Process.Start("taskkill /IM chrome.exe");
 
+                DosCommand(System.Environment.SystemDirectory + "\\taskkill.exe", " /IM iexplore.exe");
+            if (browserType.Equals("Firefox"))
+                DosCommand(System.Environment.SystemDirectory + "\\taskkill.exe", " /IM firefox.exe");
+            if (browserType.Equals("Chrome"))
+                DosCommand(System.Environment.SystemDirectory + "\\taskkill.exe", " /IM chrome.exe");
+
+        }
+
+        private static void DosCommand(string cmd, string param)
+        {
+            Process proc = new Process();
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            proc.StartInfo.FileName = cmd;
+            proc.StartInfo.Arguments = param;
+            proc.StartInfo.RedirectStandardError = false;
+            proc.StartInfo.RedirectStandardOutput = false;
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.Start();
+            proc.WaitForExit();
         }
     }
 }

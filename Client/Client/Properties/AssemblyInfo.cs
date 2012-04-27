@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Client")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Hapa")]
 [assembly: AssemblyProduct("Client")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]

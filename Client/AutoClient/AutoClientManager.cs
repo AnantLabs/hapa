@@ -62,7 +62,7 @@ namespace AutoClient
             }
             catch (Exception e)
             {
-                Thread.Sleep(17 * 1000);
+                Thread.Sleep(Const.PauseAfterRegisterFailure);
                 return false;
             }
             return true;

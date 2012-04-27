@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using AutoClient;
+using SeleniumActions;
 
 namespace Client
 {
@@ -31,8 +32,34 @@ namespace Client
             Close();
         }
 
+        private void SwitchBrowser(object sender, RoutedEventArgs e)
+        {
+            Browser.GetInstance().SwitchToAnotherBrowser();
+        }
+
+        private void GetUIObjects(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Register(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RequestCommand(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DoActions(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public void update(string message)
         {
+            
             throw new NotImplementedException();
         }
     }
