@@ -16,21 +16,21 @@ namespace ActivityLib
         private WorkflowInstance workflow = null;
         public void Start()
         {
-            Status = "Start";
+            Status = Const.InstanceStatus.Running;
             //start or resume workflow
             
         }
 
         public void Stop()
         {
-            Status = "STOP";
+            Status = Const.InstanceStatus.Stopped;
             //suspend or pause workflow
         }
 
         public string Id { get; set; }
 
-        private string _status = "STOP";
-        public string Status
+        private Const.InstanceStatus _status = Const.InstanceStatus.Ready;
+        public Const.InstanceStatus Status
         {
             get
             {
@@ -38,11 +38,11 @@ namespace ActivityLib
             }
             set
             {
-                lock (_status)
+                lock (this)
                 {
                     _status = value;
                 }
-                instanceInfoXElement.SetAttributeValue("Status", _status);
+                instanceInfoXElement.SetAttributeValue("Status", _status.ToString());
             }
         }
 
@@ -65,11 +65,12 @@ namespace ActivityLib
             XAttribute xa = instanceInfoXElement.Attribute(Const.AttributeId);
             if (xa != null)
                 Id = xa.Value;
-            Status = "STOP";
+            
             //TODO load workflow here
             //get workflow store id
             //get string content of workflow
             //load workflow
+            Status = Const.InstanceStatus.Ready;
 
         }
         

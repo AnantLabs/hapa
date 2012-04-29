@@ -9,15 +9,18 @@ namespace Common
 {
     public abstract class SuperData
     {
+        private string _id;
         public string Id
         {
-            get
-            {
-                if (String.IsNullOrEmpty(Id))
-                    Id = Guid.NewGuid().ToString();
-                return Id;
-            }
-            set { Id = value; }
+            //get
+            //{
+            //    if (String.IsNullOrEmpty(_id))
+            //        _id = Guid.NewGuid().ToString();
+            //    return _id;
+            //}
+            //set { _id = value; }
+            get;
+            set;
         }
 
         public string ParentId { get; set; }

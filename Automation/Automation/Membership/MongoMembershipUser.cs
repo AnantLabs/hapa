@@ -11,7 +11,7 @@ namespace Automation.Membership
     {
         //public string Id { get; set; }
         //public string ParentId { get; set; }
-        public string DataType { get { return "MongoMembershipUser"; } }
+        new public string DataType { get { return "MongoMembershipUser"; } }
         public string UserName { get; set; }
         public string LoweredUserName { get; set; }
         public string MobileAlias { get; set; }
