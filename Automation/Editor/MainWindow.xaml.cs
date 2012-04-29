@@ -49,7 +49,7 @@ namespace Editor
             LoadToolBox();
             RegisterMetadata();
             AddDesigner(null);
-            
+
             StopProgressBar();
         }
 
@@ -313,7 +313,7 @@ namespace Editor
 
         private void InitWorkflowStyle()
         {
-            string style = Configuration.Settings("WorkflowStyle","TestSuite");
+            string style = Configuration.Settings("WorkflowStyle", "TestSuite");
             if (style.Equals("Sequence"))
             {
                 _workflowDesigner.Load(new Sequence());
@@ -543,8 +543,8 @@ namespace Editor
             var designerView = _workflowDesigner.Context.Services.GetService<DesignerView>();
             //hide the shell bar of designer
             //designerView.WorkflowShellBarItemVisibility = ShellBarItemVisibility.None;
-            designerView.WorkflowShellBarItemVisibility = ShellBarItemVisibility.MiniMap 
-                | ShellBarItemVisibility.Zoom  | ShellBarItemVisibility.Arguments | ShellBarItemVisibility.Variables ;
+            designerView.WorkflowShellBarItemVisibility = ShellBarItemVisibility.MiniMap
+                | ShellBarItemVisibility.Zoom | ShellBarItemVisibility.Arguments | ShellBarItemVisibility.Variables;
         }
     }
 }
