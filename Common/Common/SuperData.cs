@@ -9,7 +9,7 @@ namespace Common
 {
     public abstract class SuperData
     {
-        private string _id;
+        //private string _id;
         public string Id
         {
             //get

@@ -77,6 +77,7 @@ namespace AutoClient
         {
             XElement x = XElement.Parse("<Command Name=\"Register\" />");
             Configuration.Set("TestKey", "TestValue");
+            Configuration.SaveSettings();
             AddEnvironmentVarsToXElement(x);
             Configuration.AddSettingsToXElement(x);
             return x.ToString();

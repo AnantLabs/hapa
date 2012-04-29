@@ -31,6 +31,8 @@ namespace Common
         }
         public static void Set(string key, string value)
         {
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            AppSettingsSection app = config.AppSettings;
             ConfigurationManager.AppSettings.Set(key, value);
         }
 
@@ -40,6 +42,27 @@ namespace Common
             {
                 x.SetAttributeValue(key.ToString(), Configuration.Settings(key.ToString(),null));
             }
+        }
+
+        
+        /// <summary>
+        /// we can only save the settings of editor, client; cannot save the settings of server side--web.config
+        /// </summary>
+        public static void SaveSettings()
+        {
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            AppSettingsSection app = config.AppSettings;
+            foreach (var key in ConfigurationManager.AppSettings.Keys)
+            {
+                if(app.Settings[key.ToString()]==null)
+                    app.Settings.Add(key.ToString(),Configuration.Settings(key.ToString(),key.ToString()));
+                app.Settings[key.ToString()].Value = Configuration.Settings(key.ToString(), key.ToString());
+            }
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            //AppSettingsSection app = config.AppSettings;
+            config.Save(ConfigurationSaveMode.Modified);
+
+
         }
     }
 }
