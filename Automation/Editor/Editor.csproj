@@ -97,6 +97,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindow.xaml.DnD.cs" >
+		<DependentUpon>MainWindow.xaml</DependentUpon>
+	</Compile>
+    <Compile Include="MainWindow.xaml.Menu.cs" >
+		<DependentUpon>MainWindow.xaml</DependentUpon>
+	</Compile>
+    <Compile Include="MainWindow.xaml.Workflow.cs" >
+		<DependentUpon>MainWindow.xaml</DependentUpon>
+	</Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
