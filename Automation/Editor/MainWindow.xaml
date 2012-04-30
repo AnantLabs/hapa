@@ -1,7 +1,13 @@
 ﻿<Window x:Class="Editor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Automation Suites Editor" WindowStyle="ThreeDBorderWindow" SnapsToDevicePixels="True" ResizeMode="CanResize" UseLayoutRounding="True" WindowState="Maximized" >
+        Title="Automation Suites Editor" 
+        WindowStyle="ThreeDBorderWindow" 
+        SnapsToDevicePixels="True" 
+        ResizeMode="CanResize" 
+        UseLayoutRounding="True" 
+        WindowState="Maximized" 
+        Icon="pack://siteoforigin:,,,/Resources/Project.jpg" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

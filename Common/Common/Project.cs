@@ -10,6 +10,7 @@ namespace Common
         public Project() : base()
         {            
             DisplayName = "Project";
+            DisplayIcon = "Project";
         }
     }
 }
