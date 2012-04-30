@@ -7,5 +7,6 @@ namespace Common
 {
     public class Folder : SuperData
     {
+        new public string DisplayName = "Folder";
     }
 }

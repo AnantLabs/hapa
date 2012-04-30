@@ -43,6 +43,8 @@ namespace ActivityLib
 
         public BitmapImage Get(string imageName)
         {
+            if (string.IsNullOrEmpty(imageName))
+                return null;
             if (_container.ContainsKey(imageName.ToLower()))
                 return _container[imageName.ToLower()];
             return null;

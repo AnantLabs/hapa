@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Xaml;
 using System.Xml.Linq;
 using ActivityLib;
+using Common;
 
 namespace Editor
 {
@@ -130,6 +131,16 @@ namespace Editor
             //DoubleClickOnTree(GuiObjectTree);
         }
 
+
+        private void ProjectTreeMenuItemNewClicked(object sender, RoutedEventArgs e)
+        {
+            //TODO create a new project
+            Project project = new Project();
+            project.DisplayName = "NewProject";
+            project.Id = Guid.NewGuid().ToString();
+            ProjectTreeView.Items.Add(project.GetTreeViewItem());
+            ProjectTreeView.Items.Refresh();
+        }
         private void ProjectTreeMenuItemClicked(object sender, RoutedEventArgs e)
         {
             var tag = (string)((MenuItem)sender).Tag;

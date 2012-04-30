@@ -51,6 +51,7 @@
     <Compile Include="Folder.cs" />
     <Compile Include="InputData.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="Snapshot.cs" />

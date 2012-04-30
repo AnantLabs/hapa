@@ -34,7 +34,7 @@ namespace Client
 
         private void SwitchBrowser(object sender, RoutedEventArgs e)
         {
-            Browser.GetInstance().SwitchToAnotherBrowser();
+            //Browser.GetInstance().SwitchToAnotherBrowser();
         }
 
         private void GetUIObjects(object sender, RoutedEventArgs e)

@@ -85,10 +85,10 @@
                                           Click="ProjectTreeMenuItemClicked" />
                                 <MenuItem Header="New Project"
                                           Tag="Project"
-                                          Click="ProjectTreeMenuItemClicked" />
-                                <MenuItem Header="New User"
+                                          Click="ProjectTreeMenuItemNewClicked" />
+                                <!--<MenuItem Header="New User"
                                           Tag="User"
-                                          Click="ProjectTreeMenuItemClicked" />
+                                          Click="ProjectTreeMenuItemClicked" />-->
                                 <MenuItem Header="New Test Suite"
                                           Tag="TestSuite"
                                           Click="ProjectTreeMenuItemClicked" />
