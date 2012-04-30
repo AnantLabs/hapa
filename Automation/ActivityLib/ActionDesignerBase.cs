@@ -90,6 +90,22 @@ namespace ActivityLib
                     // use typeconverter to replace this, but keep it now, maybe someday will need it:
                     //ReloadTree(tree, xe);
                 }
+
+
+            //TODO for test, remove it later
+            ModelItem myItem = this.ModelItem;
+            do
+            {
+                myItem = myItem.Parent;
+            }
+            while (myItem.Parent.ItemType != typeof(TestSuite));
+
+            myItem.Parent.Properties["Activities"].Collection.Add(new TestSuite());
+
+
+
+
+
             //if (e.Data.GetDataPresent(format))
             //{
             //    var xe = e.Data.GetData(format) as XElement;

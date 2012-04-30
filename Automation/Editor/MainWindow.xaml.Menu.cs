@@ -141,6 +141,18 @@ namespace Editor
             ProjectTreeView.Items.Add(project.GetTreeViewItem());
             ProjectTreeView.Items.Refresh();
         }
+
+
+
+        private void GuiObjectsTreeMenuItemNewClicked(object sender, RoutedEventArgs e)
+        {
+            //TODO create a new project
+            UIObject uiObject = new UIObject();
+            uiObject.DisplayName = "newObject";
+            uiObject.Id = Guid.NewGuid().ToString();
+            GuiObjectTree.Items.Add(uiObject.GetTreeViewItem());
+            GuiObjectTree.Items.Refresh();
+        }
         private void ProjectTreeMenuItemClicked(object sender, RoutedEventArgs e)
         {
             var tag = (string)((MenuItem)sender).Tag;

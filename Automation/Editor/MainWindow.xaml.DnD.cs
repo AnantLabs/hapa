@@ -26,7 +26,7 @@ namespace Editor
                     return;
                 // Find the data behind the ListViewItem
                 //XElement xe = ((XElementTreeViewItem)listViewItem).Element;
-                XElement xe = null;
+                XElement xe = XElement.Parse("<TestSuite Id=\"1234567890\" Name=\"JustForTestNow\" />");
                 // Initialize the drag & drop operation
                 var dragData = new DataObject(myformat, xe);
                 DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);

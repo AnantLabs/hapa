@@ -196,7 +196,7 @@
                                           Click="GuiObjectsTreeMenuItemClicked" />
                                     <MenuItem Header="New GUI Item"
                                           Tag="GuiObject"
-                                          Click="GuiObjectsTreeMenuItemClicked" />
+                                          Click="GuiObjectsTreeMenuItemNewClicked" />
                                     <MenuItem Header="Update"
                                           Tag="Update"
                                           Click="GuiObjectsTreeMenuItemClicked" />
