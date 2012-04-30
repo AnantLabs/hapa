@@ -53,8 +53,8 @@
             <TabControl Grid.Column="0"
                         Name="mainTabControl">
 
-                <TabItem>
-                    <TabItem.Header>
+                <TabItem Header=" Projects">
+                    <!--<TabItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -63,13 +63,19 @@
                             <Label Grid.Column="0" Margin="2" Content=" Project" />
                             <TextBox Grid.Column="1" Name="filterProject" Width="80" Margin="2" />
                         </Grid>
-                    </TabItem.Header>
-                    <TreeView Name="ProjectTreeView"
+                    </TabItem.Header>-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Name="filterProject"  HorizontalAlignment="Stretch" BorderThickness="0" />
+                        <TreeView Grid.Row="1" Name="ProjectTreeView"
                               VerticalAlignment="Stretch"
                               HorizontalAlignment="Stretch"
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.CanContentScroll="True" BorderThickness="0"
                               MouseDoubleClick="ProjectTreeDoubleClick">
                         <TreeView.ContextMenu>
                             <ContextMenu Name="ProjectContextMenu">
@@ -105,6 +111,7 @@
 
                         </TreeView.ContextMenu>
                     </TreeView>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Workflow">
                     <Border Name="ToolboxBorder"
@@ -151,9 +158,9 @@
                     VerticalAlignment="Stretch"
                     BorderThickness="2">
 
-                <TabItem 
+                <TabItem Header=" UI Objects Pool"
                      Name="tabGuiObject">
-                    <TabItem.Header>
+                    <!--<TabItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -162,12 +169,14 @@
                             <Label Grid.Column="0" Margin="2" Content=" UI Objects Pool" />
                             <TextBox Grid.Column="1" Name="filterUI" Width="80" Margin="2" />
                         </Grid>
-                    </TabItem.Header>
+                    </TabItem.Header>-->
                     <Grid>
-                        <!--<TextBox Name="debugInfo"
-                             VerticalScrollBarVisibility="Visible"
-                             TextWrapping="Wrap" />-->
-                        <TreeView Name="GuiObjectTree"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Name="filterUI"  HorizontalAlignment="Stretch" BorderThickness="0" />
+                        <TreeView Grid.Row="1" Name="GuiObjectTree" BorderThickness="0"
                               PreviewMouseLeftButtonDown="GuiObjectTreePreviewMouseLeftButtonDown"
                               PreviewMouseMove="GuiObjectTreePreviewMouseMove"
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -227,9 +236,9 @@
                           ResizeBehavior="PreviousAndNext"
                           BorderThickness="1" />
             <TabControl Name="tabControl2" Grid.Column="2">
-                <TabItem 
+                <TabItem Header=" Data"
                      Name="tabData">
-                    <TabItem.Header>
+                    <!--<TabItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -238,9 +247,14 @@
                             <Label Grid.Column="0" Margin="2" Content=" Data" />
                             <TextBox Grid.Column="1" Name="filterData" Width="80" Margin="2" />
                         </Grid>
-                    </TabItem.Header>
+                    </TabItem.Header>-->
                     <Grid>
-                        <TreeView Name="DataTree"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Name="filterData"  HorizontalAlignment="Stretch" BorderThickness="0" />
+                        <TreeView Grid.Row="1" Name="DataTree" BorderThickness="0"
                               PreviewMouseLeftButtonDown="DataTreePreviewMouseLeftButtonDown"
                               PreviewMouseMove="DataTreePreviewMouseMove"
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -267,20 +281,25 @@
                         </TreeView>
                     </Grid>
                 </TabItem>
-                <TabItem 
+                <TabItem Header=" Translation"
                      Name="tabItem4">
-                    <TabItem.Header>
+                    <!--<TabItem.Header >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Margin="2" Content=" Translation" />
-                            <TextBox Grid.Column="1" Name="filterTranslation" Width="80" Margin="2" />
+                            
                         </Grid>
-                    </TabItem.Header>
+                    </TabItem.Header>-->
                     <Grid>
-                        <DataGrid Name="translation" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Name="filterTranslation"  HorizontalAlignment="Stretch" BorderThickness="0" />
+                        <DataGrid Grid.Row="1" Name="translation" BorderThickness="0" >
 
                         </DataGrid>
                     </Grid>
