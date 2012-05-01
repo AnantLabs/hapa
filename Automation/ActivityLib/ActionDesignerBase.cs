@@ -6,7 +6,6 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using Common;
 
-
 namespace ActivityLib
 {
     public class ActionDesignerBase : ActivityDesigner
@@ -15,7 +14,7 @@ namespace ActivityLib
         {
             if (newItem is ModelItem)
             {
-                string iconName = ((ModelItem)newItem).ItemType.Name;
+                string iconName = ((ModelItem) newItem).ItemType.Name;
                 Icon = new DrawingBrush
                            {
                                Drawing = new ImageDrawing
@@ -93,17 +92,13 @@ namespace ActivityLib
 
 
             //TODO for test, remove it later
-            ModelItem myItem = this.ModelItem;
+            ModelItem myItem = ModelItem;
             do
             {
                 myItem = myItem.Parent;
-            }
-            while (myItem.Parent.ItemType != typeof(TestSuite));
+            } while (myItem.Parent.ItemType != typeof (TestSuite));
 
             myItem.Parent.Properties["Activities"].Collection.Add(new TestSuite());
-
-
-
 
 
             //if (e.Data.GetDataPresent(format))

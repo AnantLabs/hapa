@@ -7,7 +7,7 @@ namespace ActivityLib
     public abstract class LeafAction : Action
     {
         [DisplayName(@"GUI Object")]
-        [Editor(typeof(TreeNodePicker), typeof(DialogPropertyValueEditor))]
+        [Editor(typeof (TreeNodePicker), typeof (DialogPropertyValueEditor))]
         public string UIObject { get; set; }
 
         public XElement FindGuiObjectInDataContext(string content)

@@ -11,7 +11,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -19,6 +18,10 @@ using System.Windows.Media.Imaging;
 using System.Xaml;
 using ActivityLib;
 using Common;
+using Image = System.Drawing.Image;
+using TestCase = ActivityLib.TestCase;
+using TestSteps = ActivityLib.TestSteps;
+using TestSuite = ActivityLib.TestSuite;
 
 namespace Editor
 {
@@ -59,7 +62,7 @@ namespace Editor
         {
             //TODO just for test now, will update to more complex logic
 
-            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetTempFileName());
+            string fileName = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
             Activity newDesigner = null;
             if (style.Equals("Sequence"))
             {
@@ -73,20 +76,17 @@ namespace Editor
             }
             if (style.Equals("TestSuite"))
             {
-                newDesigner = new ActivityLib.TestSuite { DisplayName = "new Test suite without name" };
-
+                newDesigner = new TestSuite {DisplayName = "new Test suite without name"};
             }
 
             if (style.Equals("TestCase"))
             {
-                newDesigner = new ActivityLib.TestCase { DisplayName = "new Test case without name" };
-
+                newDesigner = new TestCase {DisplayName = "new Test case without name"};
             }
 
             if (style.Equals("TestSteps"))
             {
-                newDesigner = new ActivityLib.TestSteps { DisplayName = "new Test steps without name" };
-
+                newDesigner = new TestSteps {DisplayName = "new Test steps without name"};
             }
             //State machine is too different to others, it require special tracker ... etc, so we don't use it now
             if (style.Equals("StateMachine"))
@@ -95,7 +95,7 @@ namespace Editor
             }
 
             if (newDesigner == null)
-                newDesigner = new ActivityLib.TestSuite { DisplayName = "new Test suite (by default)" };
+                newDesigner = new TestSuite {DisplayName = "new Test suite (by default)"};
             //var newTestSuite = new Sequence();
             XamlServices.Save(fileName, newDesigner);
             AddDesigner(fileName);
@@ -105,22 +105,23 @@ namespace Editor
         {
             var tbc = new ToolboxControl();
             ToolboxBorder.Child = tbc;
-            tbc.CategoryItemStyle = new Style(typeof(TreeViewItem))
-            {
-                Setters =
+            tbc.CategoryItemStyle = new Style(typeof (TreeViewItem))
+                                        {
+                                            Setters =
                                                 {
                                                     new Setter(TreeViewItem.IsExpandedProperty, false)
                                                 }
-            };
+                                        };
             LoadDefaultActivities(tbc);
             //Load the dll contain TestSuite, it means the ActivityLib.dll loaded here
-            Assembly customAss = typeof(ActivityLib.TestSuite).Assembly;
+            Assembly customAss = typeof (TestSuite).Assembly;
             const string categoryTitle = "HaPa Automation";
             LoadCustomActivities(tbc, customAss, categoryTitle);
 
             //support the users create there own automation activities, just add the dll name to appsettings
-            string ass = Configuration.Settings("Assemmblies", "ActivityLib.dll"); //ConfigurationManager.AppSettings["Assemblies"];
-            var split = new[] { ';' };
+            string ass = Configuration.Settings("Assemmblies", "ActivityLib.dll");
+                //ConfigurationManager.AppSettings["Assemblies"];
+            var split = new[] {';'};
             string[] asses = ass.Split(split);
             foreach (string a in asses)
             {
@@ -132,8 +133,8 @@ namespace Editor
         private static void LoadCustomActivities(ToolboxControl tbc, Assembly customAss, string categoryTitle)
         {
             IEnumerable<Type> types = customAss.GetTypes().
-                Where(t => (typeof(Activity).IsAssignableFrom(t) ||
-                            typeof(IActivityTemplateFactory).IsAssignableFrom(t)) && !t.IsAbstract && t.IsPublic &&
+                Where(t => (typeof (Activity).IsAssignableFrom(t) ||
+                            typeof (IActivityTemplateFactory).IsAssignableFrom(t)) && !t.IsAbstract && t.IsPublic &&
                            !t.IsNested && HasDefaultConstructor(t));
             var cat = new ToolboxCategory(categoryTitle);
             foreach (Type type in types.OrderBy(t => t.Name))
@@ -149,16 +150,16 @@ namespace Editor
         private void LoadDefaultActivities(ToolboxControl tbc)
         {
             var dict = new ResourceDictionary
-            {
-                Source =
-                    new Uri(
-                    "pack://application:,,,/System.Activities.Presentation;component/themes/icons.xaml")
-            };
+                           {
+                               Source =
+                                   new Uri(
+                                   "pack://application:,,,/System.Activities.Presentation;component/themes/icons.xaml")
+                           };
             Resources.MergedDictionaries.Add(dict);
 
-            IEnumerable<Type> standtypes = typeof(Activity).Assembly.GetTypes().
-                Where(t => (typeof(Activity).IsAssignableFrom(t) ||
-                            typeof(IActivityTemplateFactory).IsAssignableFrom(t)) && !t.IsAbstract && t.IsPublic &&
+            IEnumerable<Type> standtypes = typeof (Activity).Assembly.GetTypes().
+                Where(t => (typeof (Activity).IsAssignableFrom(t) ||
+                            typeof (IActivityTemplateFactory).IsAssignableFrom(t)) && !t.IsAbstract && t.IsPublic &&
                            !t.IsNested && HasDefaultConstructor(t));
 
             var primary = new ToolboxCategory("Native Activities");
@@ -184,10 +185,10 @@ namespace Editor
         {
             bool secondary = false;
 
-            Type tbaType = typeof(ToolboxBitmapAttribute);
-            Type imageType = typeof(System.Drawing.Image);
+            Type tbaType = typeof (ToolboxBitmapAttribute);
+            Type imageType = typeof (Image);
             ConstructorInfo constructor = tbaType.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic, null,
-                                                                 new[] { imageType, imageType }, null);
+                                                                 new[] {imageType, imageType}, null);
 
             string resourceKey = type.IsGenericType ? type.GetGenericTypeDefinition().Name : type.Name;
             int index = resourceKey.IndexOf('`');
@@ -210,8 +211,8 @@ namespace Editor
             var dv = new DrawingVisual();
             using (DrawingContext context = dv.RenderOpen())
             {
-                context.DrawRectangle(((DrawingBrush)resource), null, new Rect(0, 0, 32, 32));
-                context.DrawRectangle(((DrawingBrush)resource), null, new Rect(32, 32, 16, 16));
+                context.DrawRectangle(((DrawingBrush) resource), null, new Rect(0, 0, 32, 32));
+                context.DrawRectangle(((DrawingBrush) resource), null, new Rect(32, 32, 16, 16));
             }
             var rtb = new RenderTargetBitmap(32, 32, 96, 96, PixelFormats.Pbgra32);
             rtb.Render(dv);
@@ -234,7 +235,7 @@ namespace Editor
                 outStream.Position = 0;
                 small = new Bitmap(outStream);
             }
-            var tba = constructor.Invoke(new object[] { small, large }) as ToolboxBitmapAttribute;
+            var tba = constructor.Invoke(new object[] {small, large}) as ToolboxBitmapAttribute;
             builder.AddCustomAttributes(type, tba);
 
             return secondary;
@@ -281,7 +282,7 @@ namespace Editor
             //if (string.IsNullOrWhiteSpace(fileName))
             //    InitWorkflowStyle();
             //else
-                _workflowDesigner.Load(fileName);
+            _workflowDesigner.Load(fileName);
             //Add the WorkflowDesigner to the grid
             DesignerBorder.Child = _workflowDesigner.View;
             //grid1.Children.Add(this.workflowDesigner.View);
@@ -293,12 +294,12 @@ namespace Editor
 
             // Flush the workflow when the model changes
             _workflowDesigner.ModelChanged += (s, e) =>
-            {
-                _workflowDesigner.Flush();
-                debugInfo.Text = _workflowDesigner.Text;
-                //var action = (ActivityLib.Action)XamlServices.Parse(_workflowDesigner.Text);
-                //ChangeManager.GetInstance().Changed(_currentActivityId, _workflowDesigner.Text);
-            };
+                                                  {
+                                                      _workflowDesigner.Flush();
+                                                      debugInfo.Text = _workflowDesigner.Text;
+                                                      //var action = (ActivityLib.Action)XamlServices.Parse(_workflowDesigner.Text);
+                                                      //ChangeManager.GetInstance().Changed(_currentActivityId, _workflowDesigner.Text);
+                                                  };
             // services
             _undoEngineService = _workflowDesigner.Context.Services.GetService<UndoEngine>();
             _undoEngineService.UndoUnitAdded += UndoEngineServiceUndoUnitAdded;
@@ -307,7 +308,9 @@ namespace Editor
             //hide the shell bar of designer
             //designerView.WorkflowShellBarItemVisibility = ShellBarItemVisibility.None;
             designerView.WorkflowShellBarItemVisibility = ShellBarItemVisibility.MiniMap
-                | ShellBarItemVisibility.Zoom | ShellBarItemVisibility.Arguments | ShellBarItemVisibility.Variables;
+                                                          | ShellBarItemVisibility.Zoom |
+                                                          ShellBarItemVisibility.Arguments |
+                                                          ShellBarItemVisibility.Variables;
         }
     }
 }

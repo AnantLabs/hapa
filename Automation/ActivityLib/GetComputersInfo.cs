@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Common;
-
 
 namespace ActivityLib
 {
@@ -21,8 +17,8 @@ namespace ActivityLib
 
             try
             {
-                XElement content = (XElement)XElement.Parse(commandStr);
-                
+                XElement content = XElement.Parse(commandStr);
+
                 Result r = Common.Result.SuccessResult();
                 r.attach(ComputersManager.GetInstance().ToString());
                 SetReturnMessage(context, r);

@@ -1,19 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using AutoClient;
-using SeleniumActions;
 
 namespace Client
 {
@@ -26,6 +13,15 @@ namespace Client
         {
             InitializeComponent();
         }
+
+        #region IAutoObserver Members
+
+        public void update(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
         private void MenuItem_Exit(object sender, RoutedEventArgs e)
         {
@@ -55,13 +51,7 @@ namespace Client
         private void DoActions(object sender, RoutedEventArgs e)
         {
             string envs = AutoClientManager.GetInstance().DoTest();
-            this.LogPanel.Text = envs;
-        }
-
-        public void update(string message)
-        {
-            
-            throw new NotImplementedException();
+            LogPanel.Text = envs;
         }
     }
 }

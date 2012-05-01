@@ -1,10 +1,7 @@
 using System;
-using System.IO;
 using System.Linq;
-using System.Windows;
-//using System.Windows.Media.Imaging;
 using System.Xml.Linq;
-using Microsoft.Win32;
+//using System.Windows.Media.Imaging;
 
 namespace Common
 {
@@ -22,7 +19,7 @@ namespace Common
             return xa.Value;
         }
 
-        public static string XElementToText( this XElement e)
+        public static string XElementToText(this XElement e)
         {
             if (e == null)
                 return "Element is NULL";
@@ -32,9 +29,9 @@ namespace Common
             return e.Attributes().Aggregate(retString, (current, a) => current + (" " + a.Name + " : " + a.Value + "\n"));
         }
 
-        public static XElement GetRootElement( this XElement current)
+        public static XElement GetRootElement(this XElement current)
         {
-            var parent = current;
+            XElement parent = current;
             while (true)
             {
                 if (parent == null)
@@ -97,12 +94,12 @@ namespace Common
             return tab;
         }
 
-        public static string GetSimpleDescriptionFromXElement( this XElement element)
+        public static string GetSimpleDescriptionFromXElement(this XElement element)
         {
             return element.GetSimpleDescriptionFromXElement(0);
         }
 
-        public static string GetSimpleDescriptionFromXElement( this XElement element, int level)
+        public static string GetSimpleDescriptionFromXElement(this XElement element, int level)
         {
             if (element == null)
                 return "element is null!";
@@ -146,7 +143,7 @@ namespace Common
 
         //    return bImage;
         //}
-        
+
         //public static string ClipboardImageToBase64String()
         //{
         //    string newBase64Str;

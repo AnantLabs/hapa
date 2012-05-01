@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using Common;
-
 
 namespace ActivityLib
 {
@@ -13,7 +8,6 @@ namespace ActivityLib
     {
         protected override void Execute(NativeActivityContext context)
         {
-            
             try
             {
                 string id = GetContextValue(context, Const.AttributeId);

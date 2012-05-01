@@ -3,11 +3,10 @@ using System.Activities;
 using System.Activities.Presentation.PropertyEditing;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Xml.Linq;
 
 namespace ActivityLib
 {
-    [Designer(typeof(ActionSetDesigner))]
+    [Designer(typeof (ActionSetDesigner))]
     public abstract class ActionSet : Action
     {
         protected Variable<int> CurrentIndex;
@@ -35,24 +34,25 @@ namespace ActivityLib
         /// It is a link to data, on release version, it should be readonly(only allow drop data into it)
         /// for debug reason, we allow read-write.
         /// </summary>
-        [Editor(typeof(TreeNodePicker), typeof(DialogPropertyValueEditor))]
+        [Editor(typeof (TreeNodePicker), typeof (DialogPropertyValueEditor))]
         public String Data { get; set; }
 
         //public InArgument<string> Data { get; set; }
-        protected override void Execute(NativeActivityContext context)
-        {
-            InternalExecute(context, null);
-            string bookmarkId = Guid.NewGuid().ToString();
-            //TODO set bookmarkId to Xelement, set command to computer here
-            context.CreateBookmark(bookmarkId, new BookmarkCallback(this.SetResult));
-        }
 
         protected override bool CanInduceIdle
         {
             get { return true; }
         }
 
-        void SetResult(NativeActivityContext context, Bookmark bookmark, Object obj)
+        protected override void Execute(NativeActivityContext context)
+        {
+            InternalExecute(context, null);
+            string bookmarkId = Guid.NewGuid().ToString();
+            //TODO set bookmarkId to Xelement, set command to computer here
+            context.CreateBookmark(bookmarkId, SetResult);
+        }
+
+        private void SetResult(NativeActivityContext context, Bookmark bookmark, Object obj)
         {
             //TODO set result here
         }
@@ -74,7 +74,7 @@ namespace ActivityLib
             if (OnChildComplete == null)
             {
                 //on completion of the current child, have the runtime call back on this method
-                OnChildComplete = new CompletionCallback(InternalExecute);
+                OnChildComplete = InternalExecute;
             }
 
             //grab the next Activity in MySequence.Activities and schedule it

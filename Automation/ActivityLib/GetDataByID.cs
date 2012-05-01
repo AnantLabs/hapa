@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using Common;
-
 
 namespace ActivityLib
 {
@@ -17,7 +12,7 @@ namespace ActivityLib
             {
                 string id = GetContextValue(context, Const.AttributeId);
 
-                string data = "";// MongoDB.MongoDB.GetInstance()[id];
+                string data = ""; // MongoDB.MongoDB.GetInstance()[id];
                 if (string.IsNullOrEmpty(data))
                 {
                     SetReturnMessage(context, Common.Result.ErrorResult("No such a data in DB, id=" + id));
@@ -32,7 +27,5 @@ namespace ActivityLib
                 SetReturnMessage(context, Common.Result.ErrorResult(ex));
             }
         }
-
-        
     }
 }

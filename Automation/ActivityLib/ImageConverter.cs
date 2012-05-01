@@ -2,20 +2,21 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using Common;
 
 namespace ActivityLib
 {
     public class ImageConverter : IValueConverter
     {
+        #region IValueConverter Members
+
         public object Convert(object value, Type targetType,
-                          object parameter, CultureInfo culture)
+                              object parameter, CultureInfo culture)
         {
             try
             {
                 if (value == null)
                     return null;
-                BitmapImage bi = ImageList.GetInstance().Get((string)value);
+                BitmapImage bi = ImageList.GetInstance().Get((string) value);
                 if (bi != null)
                 {
                     return bi;
@@ -34,5 +35,7 @@ namespace ActivityLib
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

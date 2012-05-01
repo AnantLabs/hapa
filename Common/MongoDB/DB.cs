@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
@@ -14,14 +11,13 @@ namespace MongoDB
 {
     public class DB
     {
-    private static DB _instance;
-        private MongoDatabase _database;
-        
-        Task task = null;
+        private static DB _instance;
+        private readonly MongoDatabase _database;
+
+        private readonly Task task;
 
         private DB()
         {
-            
             string connectionString = Configuration.Settings("DBConnectionString", "mongodb://localhost");
             string dbName = Configuration.Settings("DBName", "Automation");
             MongoServer server = MongoServer.Create(connectionString);
@@ -31,25 +27,24 @@ namespace MongoDB
             //CancellationTokenSource source = new CancellationTokenSource();
             //CancellationToken token = source.Token;
 
-            task = Task.Factory.StartNew( () =>
-            {
-                while (true)
-                {
-                    Thread.Sleep(10 * 60 * 1000);
-                    float cpuUsage = getCPUCOunter();
-                    if (cpuUsage > 0.10)
-                        continue;
-                    Thread.Sleep(1 * 60 * 1000);
-                    cpuUsage = getCPUCOunter();
-                    if (cpuUsage > 0.10)
-                        continue;
-                    else
-                        CleanDataBase();
-                }
-            });
+            task = Task.Factory.StartNew(() =>
+                                             {
+                                                 while (true)
+                                                 {
+                                                     Thread.Sleep(10*60*1000);
+                                                     float cpuUsage = getCPUCOunter();
+                                                     if (cpuUsage > 0.10)
+                                                         continue;
+                                                     Thread.Sleep(1*60*1000);
+                                                     cpuUsage = getCPUCOunter();
+                                                     if (cpuUsage > 0.10)
+                                                         continue;
+                                                     else
+                                                         CleanDataBase();
+                                                 }
+                                             });
 
             //task.Start();
-
         }
 
         private void CleanDataBase()
@@ -145,37 +140,33 @@ namespace MongoDB
 
         private float getCPUCOunter()
         {
-
-            PerformanceCounter cpuCounter = new PerformanceCounter();
+            var cpuCounter = new PerformanceCounter();
             cpuCounter.CategoryName = "Processor";
             cpuCounter.CounterName = "% Processor Time";
             cpuCounter.InstanceName = "_Total";
 
             // will always start at 0
             float firstValue = cpuCounter.NextValue();
-            System.Threading.Thread.Sleep(1000);
+            Thread.Sleep(1000);
             // now matches task manager reading
             float secondValue = cpuCounter.NextValue();
 
             return secondValue;
-
         }
 
         public void Dispose()
         {
-            
             if (_database.Server != null)
                 _database.Server.Disconnect();
-            
+
             if (task != null)
                 task.Dispose();
-
         }
 
         //public T MapReduce<T>(string map, string reduce)
         //{
         //    T result = default(T);
-            
+
         //    MapReduce mr = _provider.Database.CreateMapReduce();
 
         //    MapReduceResponse response =
@@ -194,20 +185,18 @@ namespace MongoDB
 
         public T Find<T>(string id)
         {
-
             return Find<T>(Const.AttributeId, id);
         }
 
         public T Find<T>(params string[] param)
         {
-            return  _database.GetCollection<T>(typeof(T).Name).FindOne(QueryCondition(param));
+            return _database.GetCollection<T>(typeof (T).Name).FindOne(QueryCondition(param));
         }
 
         public List<T> Finds<T>(IMongoQuery qc)
         {
-            
-            MongoCursor<T> cursor = _database.GetCollection<T>(typeof(T).Name).Find(qc);
-            List<T> result = new List<T>();
+            MongoCursor<T> cursor = _database.GetCollection<T>(typeof (T).Name).Find(qc);
+            var result = new List<T>();
             foreach (T t in cursor)
             {
                 result.Add(t);
@@ -215,19 +204,19 @@ namespace MongoDB
             return result;
         }
 
-        public IMongoQuery QueryCondition(params string[] para )
+        public IMongoQuery QueryCondition(params string[] para)
         {
-            int aLength = para.Length / 2;
+            int aLength = para.Length/2;
             var qc = new QueryComplete[aLength];
             for (int i = 0; i < para.Length; i++)
             {
                 string keyName = para[i];
                 if (i + 1 > para.Length - 1)
                     break;
-                int number = i / 2;
+                int number = i/2;
                 i++;
-                
-                BsonValue value = new BsonString( para[i]);
+
+                BsonValue value = new BsonString(para[i]);
                 qc[number] = Query.EQ(keyName, value);
             }
             return Query.And(qc);
@@ -245,47 +234,41 @@ namespace MongoDB
             //return result;
         }
 
-        public void Add<T>(T item) 
+        public void Add<T>(T item)
         {
-
-            _database.GetCollection<T>(typeof(T).Name).Insert(item);
+            _database.GetCollection<T>(typeof (T).Name).Insert(item);
         }
 
         public void Add<T>(IEnumerable<T> items)
         {
-            _database.GetCollection<T>(typeof(T).Name).Insert(items);
+            _database.GetCollection<T>(typeof (T).Name).Insert(items);
         }
 
-        public void Save<T>(T item) 
+        public void Save<T>(T item)
         {
-            
-            _database.GetCollection<T>(typeof(T).Name).Save(item);
+            _database.GetCollection<T>(typeof (T).Name).Save(item);
         }
 
-        public void Update<T>(T item) 
+        public void Update<T>(T item)
         {
             Save(item);
         }
 
         public void Delete<T>(string id)
         {
-            _database.GetCollection<T>(typeof(T).Name).Remove(Query.EQ(Const.AttributeId, id));           
-
+            _database.GetCollection<T>(typeof (T).Name).Remove(Query.EQ(Const.AttributeId, id));
         }
 
         public void Drop<T>()
         {
-
-            var col = _database.GetCollection<T>(typeof(T).Name);
-            _database.DropCollection(typeof(T).Name);
+            MongoCollection<T> col = _database.GetCollection<T>(typeof (T).Name);
+            _database.DropCollection(typeof (T).Name);
         }
 
         public void CreateCappedCollection<T>(string name)
         {
-            _database.GetCollection<T>(typeof(T).Name);
-            _database.GetCollection<T>(typeof(T).Name).CreateIndex(new string[]{Const.AttributeParentId});
-            
+            _database.GetCollection<T>(typeof (T).Name);
+            _database.GetCollection<T>(typeof (T).Name).CreateIndex(new[] {Const.AttributeParentId});
         }
     }
 }
-

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
-using Common;
-
 
 namespace ActivityLib
 {
@@ -17,7 +12,7 @@ namespace ActivityLib
 
             try
             {
-                XElement content = (XElement)XElement.Parse(commandStr);
+                XElement content = XElement.Parse(commandStr);
                 //TODO not implemented yet, related to BookMark
 
                 SetReturnMessage(context, Common.Result.SuccessResult());

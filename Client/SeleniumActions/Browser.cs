@@ -1,27 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using OpenQA.Selenium;
-using Selenium;
-using Common;
-using System.Diagnostics;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using Common;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using Environment = System.Environment;
 
 namespace SeleniumActions
 {
     public class Browser
     {
-        private static Browser Instance = null;
+        private static Browser Instance;
+        private readonly Hashtable pool = new Hashtable();
+        //CSS types that we care
+        private string CSSXPath = Configuration.Settings("CSSType",
+                                                         "//*[@class='ROW1' or @class='ROW2' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='']");
+
         private IWebDriver browser;
+
         private Browser()
         {
         }
+
         public static Browser GetInstance()
         {
             return Instance ?? (Instance = new Browser());
@@ -44,7 +47,7 @@ namespace SeleniumActions
             {
                 browser.SwitchTo().Window(bs[bs.Count - 1]);
             }
-            
+
             return browser;
         }
 
@@ -74,21 +77,20 @@ namespace SeleniumActions
 
             return browser;
         }
+
         //CSStype subpool<fingerprint string, webelement>
-        Hashtable pool = new Hashtable();
-        //CSS types that we care
-        string CSSXPath = Configuration.Settings("CSSType","//*[@class='ROW1' or @class='ROW2' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='' or @class='']");
+
         public void Prepare()
         {
-
         }
 
         public void Clear()
         {
-            foreach (var item in pool.Values)
+            foreach (object item in pool.Values)
             {
-                if(item.GetType().Name.Contains("Hashtable")){
-                    ((Hashtable)item).Clear();
+                if (item.GetType().Name.Contains("Hashtable"))
+                {
+                    ((Hashtable) item).Clear();
                 }
             }
             pool.Clear();
@@ -102,7 +104,7 @@ namespace SeleniumActions
 
         public string Snapshot()
         {
-            return ((ITakesScreenshot)GetCurrentBrowser()).GetScreenshot().AsBase64EncodedString;
+            return ((ITakesScreenshot) GetCurrentBrowser()).GetScreenshot().AsBase64EncodedString;
             //IJavaScriptExecutor js = GetCurrentBrowser() as IJavaScriptExecutor;
             //Response screenshotResponse = js.ExecuteScript(DriverCommand.Screenshot, null);
             //return screenshotResponse.Value.ToString();
@@ -141,7 +143,7 @@ namespace SeleniumActions
                 browser = new FirefoxDriver();
             if (browserType.Equals("Chrome"))
                 browser = new ChromeDriver();
-            browser.Navigate().GoToUrl(Configuration.Settings("DefaultURL","about:blank"));
+            browser.Navigate().GoToUrl(Configuration.Settings("DefaultURL", "about:blank"));
             MaximiseBrowser();
         }
 
@@ -159,17 +161,16 @@ namespace SeleniumActions
             string browserType = Configuration.Settings("BrowserType", "IE");
             if (browserType.Equals("IE"))
 
-                DosCommand(System.Environment.SystemDirectory + "\\taskkill.exe", " /IM iexplore.exe");
+                DosCommand(Environment.SystemDirectory + "\\taskkill.exe", " /IM iexplore.exe");
             if (browserType.Equals("Firefox"))
-                DosCommand(System.Environment.SystemDirectory + "\\taskkill.exe", " /IM firefox.exe");
+                DosCommand(Environment.SystemDirectory + "\\taskkill.exe", " /IM firefox.exe");
             if (browserType.Equals("Chrome"))
-                DosCommand(System.Environment.SystemDirectory + "\\taskkill.exe", " /IM chrome.exe");
-
+                DosCommand(Environment.SystemDirectory + "\\taskkill.exe", " /IM chrome.exe");
         }
 
         private static void DosCommand(string cmd, string param)
         {
-            Process proc = new Process();
+            var proc = new Process();
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;

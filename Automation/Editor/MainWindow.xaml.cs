@@ -13,10 +13,9 @@ namespace Editor
     public partial class MainWindow : Window
     {
         private readonly AttributeTableBuilder _builder = new AttributeTableBuilder();
+        private Point _startPoint;
         private UndoEngine _undoEngineService;
         private WorkflowDesigner _workflowDesigner = new WorkflowDesigner();
-
-        private System.Windows.Point _startPoint;
 
         public MainWindow()
         {
@@ -31,7 +30,7 @@ namespace Editor
 
         #region Progress bar
 
-        void StartProgressBar()
+        private void StartProgressBar()
         {
             Progressing.IsIndeterminate = true;
             Progressing.Visibility = Visibility.Visible;
@@ -40,14 +39,12 @@ namespace Editor
             Progressing.BeginAnimation(RangeBase.ValueProperty, doubleanimation);
         }
 
-        void StopProgressBar()
+        private void StopProgressBar()
         {
             Progressing.BeginAnimation(RangeBase.ValueProperty, null);
             Progressing.Visibility = Visibility.Collapsed;
         }
 
         #endregion Progress bar
-
-        
     }
 }

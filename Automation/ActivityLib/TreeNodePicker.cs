@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-
 namespace ActivityLib
 {
     internal class TreeNodePicker : DialogPropertyValueEditor
@@ -14,16 +13,16 @@ namespace ActivityLib
         {
             InlineEditorTemplate = new DataTemplate();
 
-            var stack = new FrameworkElementFactory(typeof(StackPanel));
+            var stack = new FrameworkElementFactory(typeof (StackPanel));
             stack.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
-            var label = new FrameworkElementFactory(typeof(Label));
+            var label = new FrameworkElementFactory(typeof (Label));
             var labelBinding = new Binding("Value");
             label.SetValue(ContentControl.ContentProperty, labelBinding);
             //label.SetValue(Label.MaxWidthProperty, 90.0);
 
             stack.AppendChild(label);
 
-            var editModeSwitch = new FrameworkElementFactory(typeof(EditModeSwitchButton));
+            var editModeSwitch = new FrameworkElementFactory(typeof (EditModeSwitchButton));
 
             editModeSwitch.SetValue(EditModeSwitchButton.TargetEditModeProperty, PropertyContainerEditMode.Dialog);
 
@@ -35,7 +34,7 @@ namespace ActivityLib
         public override void ShowDialog(PropertyValue propertyValue, IInputElement commandSource)
         {
             var converter = new ModelPropertyEntryToOwnerActivityConverter();
-            var modelItem = (ModelItem)converter.Convert(propertyValue.ParentProperty, typeof(ModelItem), false, null);
+            var modelItem = (ModelItem) converter.Convert(propertyValue.ParentProperty, typeof (ModelItem), false, null);
             if (modelItem != null)
             {
                 //var xp = new XTreePicker();

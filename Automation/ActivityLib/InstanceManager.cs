@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace ActivityLib
@@ -10,7 +7,7 @@ namespace ActivityLib
     {
         private static InstanceManager Instance;
         private readonly Dictionary<string, TestInstance> InstanceList = new Dictionary<string, TestInstance>();
-        
+
 
         private InstanceManager()
         {
@@ -27,7 +24,7 @@ namespace ActivityLib
         {
             foreach (XNode node2 in instanceInfo.Nodes())
             {
-                var instanceInfoXElement = (XElement)node2;
+                var instanceInfoXElement = (XElement) node2;
                 var testInstance = new TestInstance(instanceInfoXElement);
                 string instanceId = testInstance.Id;
                 if (InstanceList.ContainsKey(instanceId))

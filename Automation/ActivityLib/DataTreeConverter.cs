@@ -2,12 +2,13 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Xml.Linq;
-using Common;
 
 namespace ActivityLib
 {
     public class DataTreeConverter : IValueConverter
     {
+        #region IValueConverter Members
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
@@ -24,5 +25,7 @@ namespace ActivityLib
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

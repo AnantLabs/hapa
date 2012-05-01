@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using AutoClient.Service;
 using Common;
+using Environment = System.Environment;
 
 namespace AutoClient
 {
-    public class AutoClientManager :IDisposable
+    public class AutoClientManager : IDisposable
     {
         private static AutoClientManager _instance;
-        private List<IAutoObserver> observerList = new List<IAutoObserver>();
+        private readonly List<IAutoObserver> observerList = new List<IAutoObserver>();
         //static CancellationTokenSource cancell = new CancellationTokenSource();
         //CancellationToken token = cancell.Token;
-        Service.ServiceSoapClient client;
+        private ServiceSoapClient client;
         //Service.ServiceSoapClient client = new Service.ServiceSoapClient();
-        Task task;
-        
+        private Task task;
+
         private AutoClientManager()
         {
-            ActionsFactory factory = new ActionsFactory();
+            var factory = new ActionsFactory();
             //client.Open();
             //task = new Task(() =>
             //{
@@ -31,7 +31,6 @@ namespace AutoClient
             //        //bool cancelled = token.WaitHandle.WaitOne(5 * 60 * 1000);
             //        //DateTime now = DateTime.Now;
 
-                    
 
             //        //if (cancelled)
             //        //{
@@ -51,6 +50,20 @@ namespace AutoClient
             //});
             //task.Start();
         }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            if (client != null)
+                if (!client.State.Equals(CommunicationState.Closed))
+                    client.Close();
+            if (task != null)
+                task.Dispose();
+            _instance = null;
+        }
+
+        #endregion
 
         private bool Register()
         {
@@ -85,10 +98,10 @@ namespace AutoClient
 
         private static void AddEnvironmentVarsToXElement(XElement x)
         {
-            foreach (var v in System.Environment.GetEnvironmentVariables().Keys)
+            foreach (object v in Environment.GetEnvironmentVariables().Keys)
             {
                 string key = v.ToString().Replace("(", "").Replace(")", "");
-                string value = System.Environment.GetEnvironmentVariables()[v].ToString().Replace("(", "").Replace(")", "");
+                string value = Environment.GetEnvironmentVariables()[v].ToString().Replace("(", "").Replace(")", "");
                 x.SetAttributeValue(key, value);
                 //result += v.ToString() + " = " + System.Environment.GetEnvironmentVariables()[v]+" \n";
             }
@@ -113,11 +126,11 @@ namespace AutoClient
             observerList.Remove(observer);
         }
 
-        void NotifyObservers(String message)
+        private void NotifyObservers(String message)
         {
             foreach (IAutoObserver observer in observerList)
             {
-                if(observer!=null)
+                if (observer != null)
                     observer.update(message);
             }
         }
@@ -125,16 +138,6 @@ namespace AutoClient
         public static AutoClientManager GetInstance()
         {
             return _instance ?? (_instance = new AutoClientManager());
-        }
-
-        public void Dispose()
-        {
-            if(client!=null)
-                if (!client.State.Equals(CommunicationState.Closed))
-                    client.Close();
-            if (task != null) 
-                task.Dispose();
-            _instance = null;
         }
     }
 }

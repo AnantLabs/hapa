@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -15,7 +11,7 @@ namespace Automation
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -29,14 +25,14 @@ namespace Automation
             routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new {controller = "Home", action = "Index", id = UrlParameter.Optional}
+                );
         }
 
         protected void Application_Start()
@@ -44,7 +40,9 @@ namespace Automation
             AreaRegistration.RegisterAllAreas();
 
             // Use LocalDB for Entity Framework by default
-            Database.DefaultConnectionFactory = new SqlConnectionFactory("Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
+            Database.DefaultConnectionFactory =
+                new SqlConnectionFactory(
+                    "Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);

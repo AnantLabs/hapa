@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
-using Common;
-
 
 namespace ActivityLib
 {
@@ -13,13 +8,12 @@ namespace ActivityLib
     {
         protected override void Execute(NativeActivityContext context)
         {
-            
             try
             {
                 string commandStr = GetContextValue(context, "command");
 
-                XElement content = (XElement)XElement.Parse(commandStr);
-                
+                XElement content = XElement.Parse(commandStr);
+
                 InstanceManager.GetInstance().UpdateInstance(content);
                 SetReturnMessage(context, Common.Result.SuccessResult());
             }

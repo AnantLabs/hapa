@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using log4net;
+using log4net.Config;
 
 namespace Common
 {
@@ -41,9 +38,10 @@ namespace Common
     public class Logger
     {
         private static Logger _instance;
+
         private Logger()
         {
-            log4net.Config.XmlConfigurator.Configure();
+            XmlConfigurator.Configure();
         }
 
         public static Logger GetInstance()
@@ -55,10 +53,12 @@ namespace Common
         {
             return type == null ? Log() : LogManager.GetLogger(type);
         }
+
         public ILog Log()
         {
             return LogManager.GetLogger("Message:");
         }
+
         public ILog Log(string category)
         {
             return string.IsNullOrEmpty(category) ? Log() : LogManager.GetLogger(category);
@@ -68,6 +68,5 @@ namespace Common
         {
             return obj == null ? Log() : LogManager.GetLogger(obj.GetType());
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -49,7 +48,5 @@ namespace ActivityLib
                 return _container[imageName.ToLower()];
             return null;
         }
-
-        
     }
 }

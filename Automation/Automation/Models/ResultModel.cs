@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Automation.Models
 {
@@ -10,10 +6,11 @@ namespace Automation.Models
     {
     }
 
-    public class SnapshotModel 
+    public class SnapshotModel
     {
         [Required]
         public string Id { get; set; }
+
         public string Snapshot { get; set; }
     }
 }

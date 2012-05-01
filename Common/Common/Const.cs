@@ -1,29 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Common
+﻿namespace Common
 {
     public static class Const
     {
-        public enum ResultType
+        #region ClientStatus enum
+
+        public enum ClientStatus
         {
-            Success = 0,
-            Failed = 1,
-            Warning = 2,
-            Stopped = 4,
-            Unevaluated = 8,
-            Fatal = 16
+            Registered = 0,
+            Controlled = 1
         }
-        public enum ResultReaction
-        {
-            Continue = 0,
-            Terminate = 64,
-            RecordError = 1,
-            RecordWarning = 2,
-            StopCurrentTest = 4
-        }
+
+        #endregion
+
+        #region InstanceStatus enum
+
         public enum InstanceStatus
         {
             Ready = 0,
@@ -35,11 +25,34 @@ namespace Common
             SavingResult = 32
         }
 
-        public enum ClientStatus
+        #endregion
+
+        #region ResultReaction enum
+
+        public enum ResultReaction
         {
-            Registered = 0,
-            Controlled = 1
+            Continue = 0,
+            Terminate = 64,
+            RecordError = 1,
+            RecordWarning = 2,
+            StopCurrentTest = 4
         }
+
+        #endregion
+
+        #region ResultType enum
+
+        public enum ResultType
+        {
+            Success = 0,
+            Failed = 1,
+            Warning = 2,
+            Stopped = 4,
+            Unevaluated = 8,
+            Fatal = 16
+        }
+
+        #endregion
 
         public const string AttributeName = "Name";
         public const string AttributeIcon = "Icon";
@@ -48,6 +61,5 @@ namespace Common
         public const string AttributeDescription = "Description";
 
         public const int PauseAfterRegisterFailure = 17000; // in ms
-        
     }
 }

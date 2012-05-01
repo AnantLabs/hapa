@@ -1,25 +1,25 @@
-﻿<Window x:Class="Client.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Automation Client" Height="640" Width="480" WindowStartupLocation="CenterScreen" WindowState="Minimized" ResizeMode="CanMinimize">
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Menu Grid.Row ="0"  Name="MainMenu" Margin="10, 10, 5, 5" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <MenuItem Header="_File">
-                <MenuItem Header="_Switch Browser" Click="SwitchBrowser"/>
-                <MenuItem Header="_Get UI Objects" Click="GetUIObjects"/>
-                <MenuItem Header="_Register" Click="Register"/>
-                <MenuItem Header="Request_Command" Click="RequestCommand"/>
-                <MenuItem Header="_Do Actions" Click="DoActions"/>
-                <MenuItem Header="_Close" Click="MenuItem_Exit"/>
-            </MenuItem>
-        </Menu>
+﻿<Window x:Class="Client.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Automation Client" Height="640" Width="480"
+        WindowStartupLocation="CenterScreen" WindowState="Minimized" ResizeMode="CanMinimize">
 
-        <TextBox Name="LogPanel"  Grid.Row ="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" />
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Menu Grid.Row="0" Name="MainMenu" Margin="10, 10, 5, 5" HorizontalAlignment="Left" VerticalAlignment="Top">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Switch Browser" Click="SwitchBrowser" />
+        <MenuItem Header="_Get UI Objects" Click="GetUIObjects" />
+        <MenuItem Header="_Register" Click="Register" />
+        <MenuItem Header="Request_Command" Click="RequestCommand" />
+        <MenuItem Header="_Do Actions" Click="DoActions" />
+        <MenuItem Header="_Close" Click="MenuItem_Exit" />
+      </MenuItem>
+    </Menu>
 
-    </Grid>
+    <TextBox Name="LogPanel" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+             VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True" />
+
+  </Grid>
 </Window>

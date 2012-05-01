@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Activities;
 using System.ComponentModel;
-using System.Xml.Linq;
 using Common;
 
 namespace ActivityLib
 {
-    [Designer(typeof(ActionDesigner))]
+    [Designer(typeof (ActionDesigner))]
     public abstract class Action : NativeActivity
     {
         //use the ImageConverter to show the result image
         // set it to un-browsable, but now for debug reason, show it.
         //[Browsable(false)]
 
-        public string Result { get; set; }
-
-        // set it to un-browsable, but now for debug reason, show it.
-        //[Browsable(false)]
-        public string AllowDropItemType { get; set; }
-
         protected Action()
         {
             MyId = Guid.NewGuid().ToString();
             AllowDropItemType = "GUIFormat";
         }
+
+        public string Result { get; set; }
+
+        // set it to un-browsable, but now for debug reason, show it.
+        //[Browsable(false)]
+        public string AllowDropItemType { get; set; }
 
         //[Browsable(false)]
         //public DataContext CurrentDataContext { get; set; }
@@ -53,14 +52,13 @@ namespace ActivityLib
         public static string GetContextValue(NativeActivityContext context, string name)
         {
             WorkflowDataContext dc = context.DataContext;
-            foreach (var p in dc.GetProperties())
+            foreach (object p in dc.GetProperties())
             {
-                if (((PropertyDescriptor)p).Name.Equals(name))
+                if (((PropertyDescriptor) p).Name.Equals(name))
                 {
-                    string idValue = ((PropertyDescriptor)p).GetValue(dc).ToString();
+                    string idValue = ((PropertyDescriptor) p).GetValue(dc).ToString();
                     return idValue;
                 }
-
             }
             return null;
         }
@@ -68,22 +66,22 @@ namespace ActivityLib
         public static bool SetContextValue(NativeActivityContext context, string name, string value)
         {
             WorkflowDataContext dc = context.DataContext;
-            foreach (var p in dc.GetProperties())
+            foreach (object p in dc.GetProperties())
             {
-                if (((PropertyDescriptor)p).Name.Equals(name))
+                if (((PropertyDescriptor) p).Name.Equals(name))
                 {
-                    ((PropertyDescriptor)p).SetValue(dc, value);
+                    ((PropertyDescriptor) p).SetValue(dc, value);
                     return true;
                 }
-
             }
             return false;
         }
 
-        public static void SetReturnMessage(NativeActivityContext context,string message)
+        public static void SetReturnMessage(NativeActivityContext context, string message)
         {
             SetContextValue(context, "returnMessage", message);
         }
+
         public static void SetReturnMessage(NativeActivityContext context, Result r)
         {
             SetContextValue(context, "returnMessage", r.ToString());

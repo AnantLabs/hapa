@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -60,11 +58,11 @@ namespace ActivityLib
 
         public Computer GetComputer(string nameOfComputer)
         {
-                foreach (string name in _computerList.Keys)
-                {
-                    if (name.Contains(nameOfComputer))
-                        return _computerList[name];
-                }
+            foreach (string name in _computerList.Keys)
+            {
+                if (name.Contains(nameOfComputer))
+                    return _computerList[name];
+            }
             return null;
         }
 
@@ -88,7 +86,7 @@ namespace ActivityLib
         public Computer(XElement info)
         {
             _element = info;
-            var xAttribute = info.Attribute(Const.AttributeId);
+            XAttribute xAttribute = info.Attribute(Const.AttributeId);
             if (xAttribute != null) Name = xAttribute.Value;
             //Role = info.Attribute("Role").Value;
             LastAccess = DateTime.Now;

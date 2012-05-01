@@ -37,7 +37,7 @@ namespace ActivityLib
                 ModelItem parent = ModelItem.Parent.Parent;
                 if (parent != null)
                 {
-                    if (parent.ItemType.IsSubclassOf(typeof(ActionSet)))
+                    if (parent.ItemType.IsSubclassOf(typeof (ActionSet)))
                     {
                         //DataContext dataContext = ((Action)parent.GetCurrentValue()).CurrentDataContext;
                         //if (dataContext != null)
@@ -62,7 +62,7 @@ namespace ActivityLib
 
         private void TreeViewDrop(object sender, DragEventArgs e)
         {
-            TreeViewDropped(e, "GUIFormat", "UIObject", (TreeView)sender);
+            TreeViewDropped(e, "GUIFormat", "UIObject", (TreeView) sender);
         }
 
         private void TreeViewDragEnter(object sender, DragEventArgs e)

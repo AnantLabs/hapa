@@ -6,8 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Xml.Linq;
 using System.Windows.Threading;
+using System.Xml.Linq;
 using Common;
 
 namespace ActivityLib
@@ -58,8 +58,8 @@ namespace ActivityLib
                 if (parent == null)
                     return null;
                 if (parent is TreeView)
-                    return (TreeView)parent;
-                parent = ((TreeViewItem)parent).Parent;
+                    return (TreeView) parent;
+                parent = ((TreeViewItem) parent).Parent;
             }
         }
 
@@ -72,20 +72,23 @@ namespace ActivityLib
                 root.Items.Refresh();
             }
         }
+
         public bool FindByDetail(string filter, int xth, bool isDetailSearch)
         {
             foreach (object item in Items)
             {
                 if (item is XElementTreeViewItem)
                 {
-                    bool ret = isDetailSearch ? IsPartOfElement((XElementTreeViewItem)item, filter) : IsPartOfName((XElementTreeViewItem)item, filter);
+                    bool ret = isDetailSearch
+                                   ? IsPartOfElement((XElementTreeViewItem) item, filter)
+                                   : IsPartOfName((XElementTreeViewItem) item, filter);
 
                     if (ret)
                     {
                         _xthFound++;
                         if (_xthFound == xth)
                         {
-                            var xtvItem = (XElementTreeViewItem)item;
+                            var xtvItem = (XElementTreeViewItem) item;
                             xtvItem.ExpendToMe();
                             xtvItem.Focus();
                             xtvItem.IsSelected = true;
@@ -96,13 +99,14 @@ namespace ActivityLib
                             return true;
                         }
                     }
-                    if (((XElementTreeViewItem)item).FindByDetail(filter, xth, isDetailSearch)) return true;
+                    if (((XElementTreeViewItem) item).FindByDetail(filter, xth, isDetailSearch)) return true;
                 }
             }
 
             _xthFound = 0;
             return false;
         }
+
         public bool FindByName(string filter, int xth)
         {
             return FindByDetail(filter, xth, false);
@@ -110,12 +114,17 @@ namespace ActivityLib
 
         private bool IsPartOfName(XElementTreeViewItem source, string target)
         {
-            return source.Element.Attributes().Where(xa => xa.Name.ToString().Equals(Const.AttributeName)).Where(xa => !string.IsNullOrEmpty(xa.Value)).Any(xa => xa.Value.ToLower().Contains(target.Trim().ToLower()));
+            return
+                source.Element.Attributes().Where(xa => xa.Name.ToString().Equals(Const.AttributeName)).Where(
+                    xa => !string.IsNullOrEmpty(xa.Value)).Any(
+                        xa => xa.Value.ToLower().Contains(target.Trim().ToLower()));
         }
 
         private bool IsPartOfElement(XElementTreeViewItem source, string target)
         {
-            return source.Element.Attributes().Where(xa => xa != null).Where(xa => !string.IsNullOrEmpty(xa.Value)).Any(xa => xa.Value.ToLower().Contains(target.Trim().ToLower()));
+            return
+                source.Element.Attributes().Where(xa => xa != null).Where(xa => !string.IsNullOrEmpty(xa.Value)).Any(
+                    xa => xa.Value.ToLower().Contains(target.Trim().ToLower()));
         }
 
 
@@ -183,8 +192,6 @@ namespace ActivityLib
                         Items.Add(xTreeNode);
                         //}
                         //));
-
-
                     }
 
                 #endregion add children nodes recursive
@@ -200,23 +207,23 @@ namespace ActivityLib
             if (xAttribute != null)
                 if (!String.IsNullOrEmpty(xAttribute.Value))
                     title = xAttribute.Value;
-            
-            var head = new StackPanel { Orientation = Orientation.Horizontal };
+
+            var head = new StackPanel {Orientation = Orientation.Horizontal};
             var text = new TextBlock();
 
             XAttribute iconAttr = Element.Attribute(Const.AttributeIcon);
             string iconName = iconAttr != null ? iconAttr.Value : elementName;
-            var image = SetIconToNode(head, elementName, iconName, text);
+            Image image = SetIconToNode(head, elementName, iconName, text);
 
             if (image == null)
                 title = elementName + " " + title;
             text.Text = title;
-            text.ToolTip = new ToolTip { Content = ToText() };
+            text.ToolTip = new ToolTip {Content = ToText()};
 
             if (image == null)
                 title = elementName + " " + title;
             text.Text = title;
-            text.ToolTip = new ToolTip { Content = ToText() };
+            text.ToolTip = new ToolTip {Content = ToText()};
 
             head.Children.Add(text);
             Header = head;
@@ -236,29 +243,41 @@ namespace ActivityLib
                 if (bitmap != null)
                 {
                     // this is important, remove it, the tree will be 20 times slower
-                    
-                    Dispatcher.Invoke(DispatcherPriority.Normal, (System.Action)(() =>
-                    {
-                        image = new Image
-                        {
-                            Source = bitmap,
-                            Stretch = Stretch.Uniform,
-                            Width = text.FontSize,
-                            Height = text.FontSize,
-                            MinHeight = 16,
-                            MinWidth = 16
-                        };
-                        XAttribute attribute = Element.Attribute(Const.AttributeDescription);
-                        if (attribute != null)
-                        {
-                            string toolTip = elementName + "\n" + attribute.Value;
-                            ToolTip = new ToolTip();
-                            image.ToolTip = toolTip;
-                        }
 
-                        head.Children.Add(image);
-                    }
-                    ));
+                    Dispatcher.Invoke(DispatcherPriority.Normal, (System.Action) (() =>
+                                                                                      {
+                                                                                          image = new Image
+                                                                                                      {
+                                                                                                          Source =
+                                                                                                              bitmap,
+                                                                                                          Stretch =
+                                                                                                              Stretch.
+                                                                                                              Uniform,
+                                                                                                          Width =
+                                                                                                              text.
+                                                                                                              FontSize,
+                                                                                                          Height =
+                                                                                                              text.
+                                                                                                              FontSize,
+                                                                                                          MinHeight = 16,
+                                                                                                          MinWidth = 16
+                                                                                                      };
+                                                                                          XAttribute attribute =
+                                                                                              Element.Attribute(
+                                                                                                  Const.
+                                                                                                      AttributeDescription);
+                                                                                          if (attribute != null)
+                                                                                          {
+                                                                                              string toolTip =
+                                                                                                  elementName + "\n" +
+                                                                                                  attribute.Value;
+                                                                                              ToolTip = new ToolTip();
+                                                                                              image.ToolTip = toolTip;
+                                                                                          }
+
+                                                                                          head.Children.Add(image);
+                                                                                      }
+                                                                                 ));
                 }
             }
             return image;
@@ -287,7 +306,7 @@ namespace ActivityLib
             string retString = (stack.Pop()).ToString();
             while (stack.Count > 0)
             {
-                var e = (string)stack.Pop();
+                var e = (string) stack.Pop();
                 retString = retString + "." + e;
             }
             return retString;
@@ -320,12 +339,12 @@ namespace ActivityLib
                 return;
             var stack = new Stack();
 
-            var tnb = (XElementTreeViewItem)Parent;
+            var tnb = (XElementTreeViewItem) Parent;
             while (tnb != null)
             {
                 stack.Push(tnb);
                 if (tnb.Parent is XElementTreeViewItem)
-                    tnb = (XElementTreeViewItem)tnb.Parent;
+                    tnb = (XElementTreeViewItem) tnb.Parent;
                 else
                 {
                     break;
@@ -347,7 +366,7 @@ namespace ActivityLib
     /// <summary>
     /// this class is very strange, it must be embeded in this file; or we will get compilation error.
     /// </summary>
-    sealed class XTreeViewItemEnumerator : IEnumerator<XElementTreeViewItem>
+    internal sealed class XTreeViewItemEnumerator : IEnumerator<XElementTreeViewItem>
     {
         private readonly XElementTreeViewItem _mainItem;
         private int _index = -1;
@@ -362,10 +381,7 @@ namespace ActivityLib
 
         public XElementTreeViewItem Current
         {
-            get
-            {
-                return _mainItem;
-            }
+            get { return _mainItem; }
         }
 
         public void Dispose()
@@ -375,15 +391,12 @@ namespace ActivityLib
 
         object IEnumerator.Current
         {
-            get
-            {
-                return _mainItem;
-            }
+            get { return _mainItem; }
         }
 
         public bool MoveNext()
-        {            
-            return !(_index++ > 0);                
+        {
+            return !(_index++ > 0);
         }
 
         public void Reset()

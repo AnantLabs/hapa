@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Common;
-
 
 namespace ActivityLib
 {
@@ -13,18 +9,19 @@ namespace ActivityLib
     {
         protected override void Execute(NativeActivityContext context)
         {
-
             //if computer is not in the computer manager, add it;
             //if no command in it, return wait 10s, 
             string commandStr = GetContextValue(context, "command");
-            
+
             try
             {
-                XElement content = (XElement)XElement.Parse(commandStr);
+                XElement content = XElement.Parse(commandStr);
                 string computerName = content.GetAttributeValue(Const.AttributeId);
                 if (string.IsNullOrEmpty(computerName))
                 {
-                    SetReturnMessage(context, Common.Result.ErrorResult("Want to request Command,but no ComputerName:\n" + commandStr));
+                    SetReturnMessage(context,
+                                     Common.Result.ErrorResult("Want to request Command,but no ComputerName:\n" +
+                                                               commandStr));
                     return;
                 }
 
@@ -37,15 +34,12 @@ namespace ActivityLib
                 string commandInfo = computer.GetCommand();
                 Result r = Common.Result.SuccessResult();
                 //r.Attach(commandInfo);
-                SetReturnMessage(context, r );
+                SetReturnMessage(context, r);
             }
             catch (Exception ex)
             {
                 SetReturnMessage(context, Common.Result.ErrorResult(ex));
             }
         }
-
-        
-    }   
-    
+    }
 }

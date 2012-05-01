@@ -1,66 +1,42 @@
-﻿<Window x:Class="Editor.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Automation Suites Editor" 
-        WindowStyle="ThreeDBorderWindow" 
-        SnapsToDevicePixels="True" 
-        ResizeMode="CanResize" 
-        UseLayoutRounding="True" 
-        WindowState="Maximized" 
-        Icon="pack://siteoforigin:,,,/Resources/Project.jpg" >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="4*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+﻿<Window x:Class="Editor.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Automation Suites Editor"
+        WindowStyle="ThreeDBorderWindow" SnapsToDevicePixels="True" ResizeMode="CanResize" UseLayoutRounding="True"
+        WindowState="Maximized" Icon="pack://siteoforigin:,,,/Resources/Project.jpg">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="4*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0"
-              HorizontalAlignment="Left"
-              Name="menu1"
-              VerticalAlignment="Top"
-              BorderThickness="2">
-            <MenuItem Header="File"
-                      Name="FileMenu">
-                <MenuItem Header="New"
-                          Click="ClickNewButton" />
-                <MenuItem Header="Open"
-                          Click="ClickOpenButton" />
-                <MenuItem Header="Save"
-                          Name="SaveMenuItem"
-                          Click="ClickSaveButton" />
-                <MenuItem Header="Exit"
-                          Click="ClickExitButton" />
-            </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Undo"
-                          Name="undoMenu"
-                          Click="ClickUndoButton"
-                          IsEnabled="False" />
-                <MenuItem Header="Redo"
-                          Name="redoMenu"
-                          Click="ClickRedoButton"
-                          IsEnabled="False" />
-            </MenuItem>
-        </Menu>
+    <Menu Grid.Row="0" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" BorderThickness="2">
+      <MenuItem Header="File" Name="FileMenu">
+        <MenuItem Header="New" Click="ClickNewButton" />
+        <MenuItem Header="Open" Click="ClickOpenButton" />
+        <MenuItem Header="Save" Name="SaveMenuItem" Click="ClickSaveButton" />
+        <MenuItem Header="Exit" Click="ClickExitButton" />
+      </MenuItem>
+      <MenuItem Header="Edit">
+        <MenuItem Header="Undo" Name="undoMenu" Click="ClickUndoButton" IsEnabled="False" />
+        <MenuItem Header="Redo" Name="redoMenu" Click="ClickRedoButton" IsEnabled="False" />
+      </MenuItem>
+    </Menu>
 
-        <Grid Grid.Row="1"
-              Name="grid1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="16" />
-            </Grid.ColumnDefinitions>
+    <Grid Grid.Row="1" Name="grid1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="4*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="16" />
+      </Grid.ColumnDefinitions>
 
-            <TabControl Grid.Column="0"
-                        Name="mainTabControl">
+      <TabControl Grid.Column="0" Name="mainTabControl">
 
-                <TabItem Header=" Projects">
-                    <!--<TabItem.Header>
+        <TabItem Header=" Projects">
+          <!--<TabItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -70,103 +46,64 @@
                             <TextBox Grid.Column="1" Name="filterProject" Width="80" Margin="2" />
                         </Grid>
                     </TabItem.Header>-->
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBox Grid.Row="0" Name="filterProject"  HorizontalAlignment="Stretch" BorderThickness="0" />
-                        <TreeView Grid.Row="1" Name="ProjectTreeView"
-                              VerticalAlignment="Stretch"
-                              HorizontalAlignment="Stretch"
-                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              ScrollViewer.CanContentScroll="True" BorderThickness="0"
-                              MouseDoubleClick="ProjectTreeDoubleClick">
-                        <TreeView.ContextMenu>
-                            <ContextMenu Name="ProjectContextMenu">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="filterProject" HorizontalAlignment="Stretch" BorderThickness="0" />
+            <TreeView Grid.Row="1" Name="ProjectTreeView" VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" BorderThickness="0"
+                      MouseDoubleClick="ProjectTreeDoubleClick">
+              <TreeView.ContextMenu>
+                <ContextMenu Name="ProjectContextMenu">
 
-                                <MenuItem Header="Reload"
-                                          Tag="Reload"
-                                          Click="ProjectTreeMenuItemClicked" />
-                                <MenuItem Header="New Project"
-                                          Tag="Project"
-                                          Click="ProjectTreeMenuItemNewClicked" />
-                                <!--<MenuItem Header="New User"
+                  <MenuItem Header="Reload" Tag="Reload" Click="ProjectTreeMenuItemClicked" />
+                  <MenuItem Header="New Project" Tag="Project" Click="ProjectTreeMenuItemNewClicked" />
+                  <!--<MenuItem Header="New User"
                                           Tag="User"
                                           Click="ProjectTreeMenuItemClicked" />-->
-                                <MenuItem Header="New Test Suite"
-                                          Tag="TestSuite"
-                                          Click="ProjectTreeMenuItemClicked" />
-                                <MenuItem Header="New Test Case"
-                                          Tag="TestCase"
-                                          Click="ProjectTreeMenuItemClicked" />
-                                <MenuItem Header="New Test Steps"
-                                          Tag="TestSteps"
-                                          Click="ProjectTreeMenuItemClicked" />
-                                <MenuItem Header="NewFolder"
-                                          Tag="Folder"
-                                          Click="ProjectTreeMenuItemClicked" />
-                                <MenuItem Header="Update"
-                                          Tag="Update"
-                                          Click="ProjectTreeMenuItemClicked" />
-                                <MenuItem Header="Delete"
-                                          Tag="Delete"
-                                          Click="ProjectTreeMenuItemClicked" />
-                            </ContextMenu>
+                  <MenuItem Header="New Test Suite" Tag="TestSuite" Click="ProjectTreeMenuItemClicked" />
+                  <MenuItem Header="New Test Case" Tag="TestCase" Click="ProjectTreeMenuItemClicked" />
+                  <MenuItem Header="New Test Steps" Tag="TestSteps" Click="ProjectTreeMenuItemClicked" />
+                  <MenuItem Header="NewFolder" Tag="Folder" Click="ProjectTreeMenuItemClicked" />
+                  <MenuItem Header="Update" Tag="Update" Click="ProjectTreeMenuItemClicked" />
+                  <MenuItem Header="Delete" Tag="Delete" Click="ProjectTreeMenuItemClicked" />
+                </ContextMenu>
 
-                        </TreeView.ContextMenu>
-                    </TreeView>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Workflow">
-                    <Border Name="ToolboxBorder"
-                            BorderThickness="2"></Border>
-                </TabItem>
-            </TabControl>
+              </TreeView.ContextMenu>
+            </TreeView>
+          </Grid>
+        </TabItem>
+        <TabItem Header="Workflow">
+          <Border Name="ToolboxBorder" BorderThickness="2"></Border>
+        </TabItem>
+      </TabControl>
 
-            <GridSplitter Grid.Column="1"
-                          Name="gridSplitter2"
-                          Width="8"
-                          ResizeBehavior="PreviousAndNext"
-                          BorderThickness="1" />
-            <Border Grid.Column="2"
-                    Name="DesignerBorder"
-                    BorderThickness="2"></Border>
-            <GridSplitter Grid.Column="3"
-                          Name="gridSplitter1"
-                          Width="8"
-                          ResizeBehavior="PreviousAndNext"
-                          BorderThickness="1" />
+      <GridSplitter Grid.Column="1" Name="gridSplitter2" Width="8" ResizeBehavior="PreviousAndNext"
+                    BorderThickness="1" />
+      <Border Grid.Column="2" Name="DesignerBorder" BorderThickness="2"></Border>
+      <GridSplitter Grid.Column="3" Name="gridSplitter1" Width="8" ResizeBehavior="PreviousAndNext"
+                    BorderThickness="1" />
 
-            <Border Grid.Column="4"
-                    Name="PropertyBorder"
-                    BorderThickness="2" />
+      <Border Grid.Column="4" Name="PropertyBorder" BorderThickness="2" />
 
-        </Grid>
-        <GridSplitter Grid.Row="2"
-                      Name="gridSplitter4"
-                      ResizeBehavior="PreviousAndNext"
-                      HorizontalAlignment="Stretch"
-                      BorderThickness="1"
-                      Height="8" />
+    </Grid>
+    <GridSplitter Grid.Row="2" Name="gridSplitter4" ResizeBehavior="PreviousAndNext" HorizontalAlignment="Stretch"
+                  BorderThickness="1" Height="8" />
 
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="4*" />
-            </Grid.ColumnDefinitions>
+    <Grid Grid.Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="4*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="4*" />
+      </Grid.ColumnDefinitions>
 
-            <TabControl 
-                Grid.Column="0"
-                    Name="tabControl1"
-                    VerticalAlignment="Stretch"
-                    BorderThickness="2">
+      <TabControl Grid.Column="0" Name="tabControl1" VerticalAlignment="Stretch" BorderThickness="2">
 
-                <TabItem Header=" UI Objects Pool"
-                     Name="tabGuiObject">
-                    <!--<TabItem.Header>
+        <TabItem Header=" UI Objects Pool" Name="tabGuiObject">
+          <!--<TabItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -176,40 +113,30 @@
                             <TextBox Grid.Column="1" Name="filterUI" Width="80" Margin="2" />
                         </Grid>
                     </TabItem.Header>-->
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBox Grid.Row="0" Name="filterUI"  HorizontalAlignment="Stretch" BorderThickness="0" />
-                        <TreeView Grid.Row="1" Name="GuiObjectTree" BorderThickness="0"
-                              PreviewMouseLeftButtonDown="GuiObjectTreePreviewMouseLeftButtonDown"
-                              PreviewMouseMove="GuiObjectTreePreviewMouseMove"
-                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              ScrollViewer.CanContentScroll="True"
-                              MouseDoubleClick="GuiTreeDoubleClick">
-                            <TreeView.ContextMenu>
-                                <ContextMenu Name="GuiObjectContextMenu">
-                                    <MenuItem Header="Reload"
-                                          Tag="Reload"
-                                          Click="GuiObjectsTreeMenuItemClicked" />
-                                    <MenuItem Header="New GUI Item"
-                                          Tag="GuiObject"
-                                          Click="GuiObjectsTreeMenuItemNewClicked" />
-                                    <MenuItem Header="Update"
-                                          Tag="Update"
-                                          Click="GuiObjectsTreeMenuItemClicked" />
-                                    <MenuItem Header="Delete"
-                                          Tag="Delete"
-                                          Click="GuiObjectsTreeMenuItemClicked" />
-                                </ContextMenu>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="filterUI" HorizontalAlignment="Stretch" BorderThickness="0" />
+            <TreeView Grid.Row="1" Name="GuiObjectTree" BorderThickness="0"
+                      PreviewMouseLeftButtonDown="GuiObjectTreePreviewMouseLeftButtonDown" PreviewMouseMove="GuiObjectTreePreviewMouseMove"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True" MouseDoubleClick="GuiTreeDoubleClick">
+              <TreeView.ContextMenu>
+                <ContextMenu Name="GuiObjectContextMenu">
+                  <MenuItem Header="Reload" Tag="Reload" Click="GuiObjectsTreeMenuItemClicked" />
+                  <MenuItem Header="New GUI Item" Tag="GuiObject"
+                            Click="GuiObjectsTreeMenuItemNewClicked" />
+                  <MenuItem Header="Update" Tag="Update" Click="GuiObjectsTreeMenuItemClicked" />
+                  <MenuItem Header="Delete" Tag="Delete" Click="GuiObjectsTreeMenuItemClicked" />
+                </ContextMenu>
 
-                            </TreeView.ContextMenu>
-                        </TreeView>
-                    </Grid>
-                </TabItem>
-                <!--<TabItem Header="Automation Client"
+              </TreeView.ContextMenu>
+            </TreeView>
+          </Grid>
+        </TabItem>
+        <!--<TabItem Header="Automation Client"
                      Name="tabClient">
                 <Grid>
                     <TreeView Name="IdelClientTree"
@@ -226,25 +153,18 @@
                     </TreeView>
                 </Grid>
             </TabItem>-->
-                <TabItem Header="XML Source "
-                     Name="tabItem1">
-                    <Grid>
-                        <TextBox Name="debugInfo"
-                                 HorizontalScrollBarVisibility="Auto"
-                             VerticalScrollBarVisibility="Auto"
-                              />
-                    </Grid>
-                </TabItem>
-            </TabControl>
-            <GridSplitter Grid.Column="1"
-                          Name="gridSplitter11"
-                          Width="8"
-                          ResizeBehavior="PreviousAndNext"
-                          BorderThickness="1" />
-            <TabControl Name="tabControl2" Grid.Column="2">
-                <TabItem Header=" Data"
-                     Name="tabData">
-                    <!--<TabItem.Header>
+        <TabItem Header="XML Source " Name="tabItem1">
+          <Grid>
+            <TextBox Name="debugInfo" HorizontalScrollBarVisibility="Auto"
+                     VerticalScrollBarVisibility="Auto" />
+          </Grid>
+        </TabItem>
+      </TabControl>
+      <GridSplitter Grid.Column="1" Name="gridSplitter11" Width="8" ResizeBehavior="PreviousAndNext"
+                    BorderThickness="1" />
+      <TabControl Name="tabControl2" Grid.Column="2">
+        <TabItem Header=" Data" Name="tabData">
+          <!--<TabItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -254,42 +174,30 @@
                             <TextBox Grid.Column="1" Name="filterData" Width="80" Margin="2" />
                         </Grid>
                     </TabItem.Header>-->
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBox Grid.Row="0" Name="filterData"  HorizontalAlignment="Stretch" BorderThickness="0" />
-                        <TreeView Grid.Row="1" Name="DataTree" BorderThickness="0"
-                              PreviewMouseLeftButtonDown="DataTreePreviewMouseLeftButtonDown"
-                              PreviewMouseMove="DataTreePreviewMouseMove"
-                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              ScrollViewer.CanContentScroll="True"
-                              MouseDoubleClick="DataTreeDoubleClick">
-                            <TreeView.ContextMenu>
-                                <ContextMenu Name="DataContextMenu">
-                                    <MenuItem Header="Reload"
-                                          Tag="Reload"
-                                          Click="DataTreeMenuItemClicked" />
-                                    <MenuItem Header="New Data"
-                                          Tag="Data"
-                                          Click="DataTreeMenuItemClicked" />
-                                    <MenuItem Header="Update"
-                                          Tag="Update"
-                                          Click="DataTreeMenuItemClicked" />
-                                    <MenuItem Header="Delete"
-                                          Tag="Delete"
-                                          Click="DataTreeMenuItemClicked" />
-                                </ContextMenu>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="filterData" HorizontalAlignment="Stretch" BorderThickness="0" />
+            <TreeView Grid.Row="1" Name="DataTree" BorderThickness="0"
+                      PreviewMouseLeftButtonDown="DataTreePreviewMouseLeftButtonDown" PreviewMouseMove="DataTreePreviewMouseMove"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True" MouseDoubleClick="DataTreeDoubleClick">
+              <TreeView.ContextMenu>
+                <ContextMenu Name="DataContextMenu">
+                  <MenuItem Header="Reload" Tag="Reload" Click="DataTreeMenuItemClicked" />
+                  <MenuItem Header="New Data" Tag="Data" Click="DataTreeMenuItemClicked" />
+                  <MenuItem Header="Update" Tag="Update" Click="DataTreeMenuItemClicked" />
+                  <MenuItem Header="Delete" Tag="Delete" Click="DataTreeMenuItemClicked" />
+                </ContextMenu>
 
-                            </TreeView.ContextMenu>
-                        </TreeView>
-                    </Grid>
-                </TabItem>
-                <TabItem Header=" Translation"
-                     Name="tabItem4">
-                    <!--<TabItem.Header >
+              </TreeView.ContextMenu>
+            </TreeView>
+          </Grid>
+        </TabItem>
+        <TabItem Header=" Translation" Name="tabItem4">
+          <!--<TabItem.Header >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -299,28 +207,23 @@
                             
                         </Grid>
                     </TabItem.Header>-->
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBox Grid.Row="0" Name="filterTranslation"  HorizontalAlignment="Stretch" BorderThickness="0" />
-                        <DataGrid Grid.Row="1" Name="translation" BorderThickness="0" >
-
-                        </DataGrid>
-                    </Grid>
-                </TabItem>
-            </TabControl>
-
-        </Grid>
-
-
-        <ProgressBar Name="Progressing"
-                     Grid.Row="4"
-                     Height="16"
-                     Visibility="Visible">
-
-        </ProgressBar>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="filterTranslation" HorizontalAlignment="Stretch"
+                     BorderThickness="0" />
+            <DataGrid Grid.Row="1" Name="translation" BorderThickness="0">
+            </DataGrid>
+          </Grid>
+        </TabItem>
+      </TabControl>
 
     </Grid>
+
+
+    <ProgressBar Name="Progressing" Grid.Row="4" Height="16" Visibility="Visible"></ProgressBar>
+
+  </Grid>
 </Window>

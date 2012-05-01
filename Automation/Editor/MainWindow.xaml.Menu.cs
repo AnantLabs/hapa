@@ -66,9 +66,8 @@ namespace Editor
 
         private void ClickNewButton(object sender, RoutedEventArgs e)
         {
-            AddTestDesigner("TestSuite");           
+            AddTestDesigner("TestSuite");
         }
-
 
 
         private void ClickUndoButton(object sender, RoutedEventArgs e)
@@ -126,7 +125,7 @@ namespace Editor
         private void ProjectTreeMenuItemNewClicked(object sender, RoutedEventArgs e)
         {
             //TODO create a new project
-            Project project = new Project();
+            var project = new Project();
             project.DisplayName = "NewProject";
             project.Id = Guid.NewGuid().ToString();
             ProjectTreeView.Items.Add(project.GetTreeViewItem());
@@ -134,19 +133,19 @@ namespace Editor
         }
 
 
-
         private void GuiObjectsTreeMenuItemNewClicked(object sender, RoutedEventArgs e)
         {
             //TODO create a new project
-            UIObject uiObject = new UIObject();
+            var uiObject = new UIObject();
             uiObject.DisplayName = "newObject";
             uiObject.Id = Guid.NewGuid().ToString();
             GuiObjectTree.Items.Add(uiObject.GetTreeViewItem());
             GuiObjectTree.Items.Refresh();
         }
+
         private void ProjectTreeMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            var tag = (string)((MenuItem)sender).Tag;
+            var tag = (string) ((MenuItem) sender).Tag;
             TreeView currentTree = ProjectTreeView;
 
             if (currentTree.SelectedItem == null)
@@ -185,7 +184,7 @@ namespace Editor
         private void DataTreePreviewMouseMove(object sender, MouseEventArgs e)
         {
             // Get the current mouse position
-            System.Windows.Point mousePos = e.GetPosition(null);
+            Point mousePos = e.GetPosition(null);
             Vector diff = _startPoint - mousePos;
 
             DragTreeviewItem(e, diff, "DataFormat");
@@ -193,7 +192,7 @@ namespace Editor
 
         private void GuiObjectsTreeMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            var tag = (string)((MenuItem)sender).Tag;
+            var tag = (string) ((MenuItem) sender).Tag;
             TreeView currentTree = GuiObjectTree;
             if (currentTree.SelectedItem == null)
                 return;
@@ -207,7 +206,7 @@ namespace Editor
 
         private void DataTreeMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            var tag = (string)((MenuItem)sender).Tag;
+            var tag = (string) ((MenuItem) sender).Tag;
             TreeView currentTree = DataTree;
             if (currentTree.SelectedItem == null)
                 return;
@@ -218,6 +217,5 @@ namespace Editor
             //    XElement toCreateXe = AddNodeByTemplete(currentTree, tag);
             //}
         }
-
     }
 }

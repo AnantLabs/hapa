@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace ActivityLib
 {
@@ -10,15 +11,15 @@ namespace ActivityLib
             InitializeComponent();
         }
 
-        private void TreeViewPreviewDragEnter(object sender, System.Windows.DragEventArgs e)
+        private void TreeViewPreviewDragEnter(object sender, DragEventArgs e)
         {
             TreeViewDragEntered(e, sender, "DataFormat");
             //TreeViewDragEntered(e, sender, "ClientFormat");
         }
 
-        private void TreeViewPreviewDrop(object sender, System.Windows.DragEventArgs e)
+        private void TreeViewPreviewDrop(object sender, DragEventArgs e)
         {
-            TreeViewDropped(e, "DataFormat", "Data", (TreeView)sender);
+            TreeViewDropped(e, "DataFormat", "Data", (TreeView) sender);
             //TreeViewDropped(e, "ClientFormat", "Client", (TreeView)sender);
         }
     }

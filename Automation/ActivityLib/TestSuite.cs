@@ -1,6 +1,4 @@
 ﻿using System.Activities;
-using System.Xml.Linq;
-
 
 namespace ActivityLib
 {
@@ -8,7 +6,6 @@ namespace ActivityLib
     /// Only for management use, it can contain testcase and testsuite; that make recursive-able
     /// And it contains data!
     /// </summary>
-
     public sealed class TestSuite : ActionSet
     {
         // Define an activity input argument of type string

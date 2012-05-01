@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,7 +18,7 @@ namespace Editor
                 // Get the dragged ListViewItem
 
                 var listViewItem =
-                    FindAnchestor<TreeViewItem>((DependencyObject)e.OriginalSource);
+                    FindAnchestor<TreeViewItem>((DependencyObject) e.OriginalSource);
                 if (listViewItem == null)
                     return;
                 // Find the data behind the ListViewItem
@@ -40,7 +37,7 @@ namespace Editor
             {
                 if (current is T)
                 {
-                    return (T)current;
+                    return (T) current;
                 }
                 current = VisualTreeHelper.GetParent(current);
             } while (current != null);
@@ -54,11 +51,10 @@ namespace Editor
 
         private void GuiObjectTreePreviewMouseMove(object sender, MouseEventArgs e)
         {
-            System.Windows.Point mousePos = e.GetPosition(null);
+            Point mousePos = e.GetPosition(null);
             Vector diff = _startPoint - mousePos;
 
             DragTreeviewItem(e, diff, "GUIFormat");
         }
-
     }
 }

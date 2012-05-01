@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 using Common;
+using MongoDB;
 
 namespace Automation.Membership
 {
@@ -11,7 +8,11 @@ namespace Automation.Membership
     {
         //public string Id { get; set; }
         //public string ParentId { get; set; }
-        new public string DataType { get { return "MongoMembershipUser"; } }
+        public new string DataType
+        {
+            get { return "MongoMembershipUser"; }
+        }
+
         public string UserName { get; set; }
         public string LoweredUserName { get; set; }
         public string MobileAlias { get; set; }
@@ -54,7 +55,7 @@ namespace Automation.Membership
                 return false;
             Password = p2;
             LastPasswordChangedDate = DateTime.Now;
-            MongoDB.DB.GetInstance().Update<MongoMembershipUser>(this);
+            DB.GetInstance().Update(this);
             return true;
         }
     }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Common
+﻿namespace Common
 {
     public class Folder : SuperData
     {
-        new public string DisplayName = "Folder";
+        public new string DisplayName = "Folder";
     }
 }
