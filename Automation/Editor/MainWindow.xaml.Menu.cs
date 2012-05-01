@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Activities.Presentation;
-using System.Activities.Statements;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Xaml;
 using System.Xml.Linq;
-using ActivityLib;
 using Common;
 
 namespace Editor
@@ -71,14 +66,10 @@ namespace Editor
 
         private void ClickNewButton(object sender, RoutedEventArgs e)
         {
-            //TODO just for test now, will update to more complex logic
-
-            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetTempFileName());
-            var newTestSuite = new ActivityLib.TestSuite { DisplayName = "new Test suite without name" };
-            //var newTestSuite = new Sequence();
-            XamlServices.Save(fileName, newTestSuite);
-            AddDesigner(fileName);            
+            AddTestDesigner("TestSuite");           
         }
+
+
 
         private void ClickUndoButton(object sender, RoutedEventArgs e)
         {

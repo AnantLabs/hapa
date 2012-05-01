@@ -1,33 +1,9 @@
 ﻿using System;
-using System.Activities;
-using System.Activities.Core.Presentation;
 using System.Activities.Presentation;
 using System.Activities.Presentation.Metadata;
-using System.Activities.Presentation.Toolbox;
-using System.Activities.Presentation.View;
-using System.Activities.Statements;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xaml;
-using System.Xml.Linq;
-using ActivityLib;
-using Common;
 
 namespace Editor
 {
@@ -48,13 +24,10 @@ namespace Editor
             StartProgressBar();
             LoadToolBox();
             RegisterMetadata();
-            AddDesigner(null);
+            AddTestDesigner("TestSuite");
 
             StopProgressBar();
         }
-
-       
-        
 
         #region Progress bar
 

@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Xaml;
 using ActivityLib;
 using Common;
 
@@ -23,27 +24,69 @@ namespace Editor
 {
     public partial class MainWindow : Window
     {
-        private void InitWorkflowStyle()
+        //private void InitWorkflowStyle()
+        //{
+        //    string style = Configuration.Settings("WorkflowStyle", "TestSuite");
+        //    if (_workflowDesigner != null)
+        //    {
+        //        //TODO how to clean the current workflow designer ???
+        //    }
+        //    if (style.Equals("Sequence"))
+        //    {
+        //        _workflowDesigner.Load(new Sequence());
+        //        return;
+        //    }
+        //    if (style.Equals("FlowChart"))
+        //    {
+        //        _workflowDesigner.Load(new Flowchart());
+        //        return;
+        //    }
+        //    if (style.Equals("TestSuite"))
+        //    {
+        //        _workflowDesigner.Load(new ActivityLib.TestSuite());
+        //        return;
+        //    }
+        //    //State machine is too different to others, it require special tracker ... etc, so we don't use it now
+        //    if (style.Equals("StateMachine"))
+        //    {
+        //        //_workflowDesigner.Load(new StateMachine()); 
+        //    }
+
+        //    _workflowDesigner.Load(new Sequence());
+        //}
+
+        private void AddTestDesigner(string style)
         {
-            string style = Configuration.Settings("WorkflowStyle", "TestSuite");
-            if (_workflowDesigner != null)
-            {
-                //TODO how to clean the current workflow designer ???
-            }
+            //TODO just for test now, will update to more complex logic
+
+            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetTempFileName());
+            Activity newDesigner = null;
             if (style.Equals("Sequence"))
             {
-                _workflowDesigner.Load(new Sequence());
-                return;
+                //_workflowDesigner.Load(new Sequence());
+                newDesigner = new Sequence();
             }
             if (style.Equals("FlowChart"))
             {
-                _workflowDesigner.Load(new Flowchart());
-                return;
+                //_workflowDesigner.Load(new Flowchart());
+                newDesigner = new Flowchart();
             }
             if (style.Equals("TestSuite"))
             {
-                _workflowDesigner.Load(new ActivityLib.TestSuite());
-                return;
+                newDesigner = new ActivityLib.TestSuite { DisplayName = "new Test suite without name" };
+
+            }
+
+            if (style.Equals("TestCase"))
+            {
+                newDesigner = new ActivityLib.TestCase { DisplayName = "new Test case without name" };
+
+            }
+
+            if (style.Equals("TestSteps"))
+            {
+                newDesigner = new ActivityLib.TestSteps { DisplayName = "new Test steps without name" };
+
             }
             //State machine is too different to others, it require special tracker ... etc, so we don't use it now
             if (style.Equals("StateMachine"))
@@ -51,7 +94,11 @@ namespace Editor
                 //_workflowDesigner.Load(new StateMachine()); 
             }
 
-            _workflowDesigner.Load(new Sequence());
+            if (newDesigner == null)
+                newDesigner = new ActivityLib.TestSuite { DisplayName = "new Test suite (by default)" };
+            //var newTestSuite = new Sequence();
+            XamlServices.Save(fileName, newDesigner);
+            AddDesigner(fileName);
         }
 
         protected void LoadToolBox()
@@ -231,9 +278,9 @@ namespace Editor
 
             Grid.SetColumn(_workflowDesigner.View, 1);
 
-            if (string.IsNullOrWhiteSpace(fileName))
-                InitWorkflowStyle();
-            else
+            //if (string.IsNullOrWhiteSpace(fileName))
+            //    InitWorkflowStyle();
+            //else
                 _workflowDesigner.Load(fileName);
             //Add the WorkflowDesigner to the grid
             DesignerBorder.Child = _workflowDesigner.View;
