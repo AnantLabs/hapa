@@ -15,10 +15,17 @@ namespace Editor
             var tvi = new TreeViewItem();
             var head = new StackPanel {Orientation = Orientation.Horizontal};
 
-            var text = new TextBlock();
-            text.Text = superData.DisplayName;
-            text.ToolTip = new ToolTip {Content = "Need further programming"};
+            var text = new TextBlock
+                           {Text = superData.DisplayName, ToolTip = new ToolTip {Content = "Need further programming"}};
 
+            AddImageToTreeViewItem(superData, head, text);
+            head.Children.Add(text);
+            tvi.Header = head;
+            return tvi;
+        }
+
+        private static void AddImageToTreeViewItem(SuperData superData, StackPanel head, TextBlock text)
+        {
             BitmapImage bitmap = ImageList.GetInstance().Get(superData.DisplayIcon);
 
             if (bitmap != null)
@@ -27,28 +34,25 @@ namespace Editor
 
                 Dispatcher.CurrentDispatcher.Invoke(
                     DispatcherPriority.Normal,
-                    (Action) (() =>
-                                  {
-                                      var image = new Image
-                                                      {
-                                                          Source = bitmap,
-                                                          Stretch = Stretch.Uniform,
-                                                          Width = text.FontSize,
-                                                          Height = text.FontSize,
-                                                          MinHeight = 16,
-                                                          MinWidth = 16
-                                                      };
-                                      string id = superData.Id;
+                    (Action)(() =>
+                    {
+                        var image = new Image
+                        {
+                            Source = bitmap,
+                            Stretch = Stretch.Uniform,
+                            Width = text.FontSize,
+                            Height = text.FontSize,
+                            MinHeight = 16,
+                            MinWidth = 16
+                        };
+                        string id = superData.Id;
 
-                                      //ToolTip = new ToolTip();
-                                      image.ToolTip = id;
-                                      head.Children.Add(image);
-                                  }
+                        //ToolTip = new ToolTip();
+                        image.ToolTip = id;
+                        head.Children.Add(image);
+                    }
                              ));
             }
-            head.Children.Add(text);
-            tvi.Header = head;
-            return tvi;
         }
     }
 }

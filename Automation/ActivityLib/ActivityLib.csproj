@@ -90,8 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionDesignerBase.cs" />
-    <Compile Include="Click.cs" />
-    <Compile Include="CloseBrowser.cs" />
     <Compile Include="ComputersManager.cs" />
     <Compile Include="DeleteInstance.cs" />
     <Compile Include="GetComputersInfo.cs" />
@@ -112,12 +110,9 @@
     </Compile>
     <Compile Include="ActionSet.cs" />
     <Compile Include="RequestCommand.cs" />
-    <Compile Include="Select.cs" />
     <Compile Include="SetData.cs" />
     <Compile Include="SetInstanceInfo.cs" />
     <Compile Include="SetResult.cs" />
-    <Compile Include="SetText.cs" />
-    <Compile Include="StartBrowser.cs" />
     <Compile Include="StartInstance.cs" />
     <Compile Include="StopInstance.cs" />
     <Compile Include="TestCase.cs" />
@@ -126,7 +121,6 @@
     <Compile Include="TestSuite.cs" />
     <Compile Include="TreeNodePicker.cs" />
     <Compile Include="DataTreeConverter.cs" />
-    <Compile Include="Verify.cs" />
     <Compile Include="XElementTreeViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
