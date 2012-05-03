@@ -2,11 +2,12 @@
                                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                                 xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
-                                xmlns:ActivityLib="clr-namespace:ActivityLib" AllowDrop="true">
+                                xmlns:ActivityLib="clr-namespace:ActivityLib"
+                                xmlns:Activities="clr-namespace:ActivityLib.Activities" AllowDrop="true">
 
   <sap:ActivityDesigner.Resources>
-    <ActivityLib:ImageConverter x:Key="ResultConverter" />
-    <ActivityLib:GuiTreeConverter x:Key="GUITreeConverter" />
+    <Activities:ImageConverter x:Key="ResultConverter" />
+    <Activities:GuiTreeConverter x:Key="GUITreeConverter" />
     <DataTemplate x:Key="Expanded">
       <StackPanel>
         <!-- Idea we can consider add a image here to show the result, then we can get ride of the huge ...template.xaml -->

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace ActivityLib
+namespace ActivityLib.Activities
 {
     public class ImageList
     {

@@ -1,23 +1,12 @@
-﻿using System.Activities;
+using System.Activities;
 
-namespace ActivityLib
+namespace ActivityLib.Activities
 {
-    /// <summary>
-    /// Only for management use, it can contain testcase and testsuite; that make recursive-able
-    /// And it contains data!
-    /// </summary>
-    public sealed class TestSuite : ActionSet
+    public sealed class TestCase : ActionSet
     {
         // Define an activity input argument of type string
+        //public InArgument<string> Text { get; set; }
 
-        // If your activity returns a value, derive from CodeActivity<TResult>
-        // and return the value from the Execute method.
-        //protected void Execute(CodeActivityContext context)
-        //{
-        //    // Obtain the runtime value of the Text input argument
-        //    string text = context.GetValue(name);
-        //}
-        //Idea only allow testcase and testsuite children, low priority
         public string Client { get; set; }
 
         protected override void CacheMetadata(NativeActivityMetadata metadata)
@@ -27,7 +16,7 @@ namespace ActivityLib
             //add the private implementation variable: currentIndex
             metadata.AddImplementationVariable(CurrentIndex);
             if (Name != null)
-                DisplayName = "Test Suite: " + Name;
+                DisplayName = "Test Case: " + Name;
         }
 
         //public override XElement SetData(ActivityContext context, DataContext currentDataContext)

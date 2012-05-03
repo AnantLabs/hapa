@@ -4,7 +4,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml.Linq;
+using ActivityLib.Activities;
 using Common;
+using TestSuite = ActivityLib.Activities.TestSuite;
 
 namespace ActivityLib
 {

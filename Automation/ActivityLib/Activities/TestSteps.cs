@@ -1,6 +1,6 @@
-﻿using System.Activities;
+using System.Activities;
 
-namespace ActivityLib
+namespace ActivityLib.Activities
 {
     public class TestSteps : ActionSet
     {

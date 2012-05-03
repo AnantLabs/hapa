@@ -3,13 +3,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using ActivityLib;
+using ActivityLib.Activities;
 using Common;
+using MongoDB;
 using Action = System.Action;
 
 namespace Editor
 {
     public static class SuperDataExtension
     {
+        public static void Save(this SuperData superData)
+        {
+            DB.GetInstance().Save(superData);
+        }
+
+        public static void Delete(this SuperData superData)
+        {
+            DB.GetInstance().Delete<SuperData>(superData.Id);
+        }
+
         public static TreeViewItem GetTreeViewItem(this SuperData superData)
         {
             var tvi = new TreeViewItem();

@@ -17,11 +17,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xaml;
 using ActivityLib;
+using ActivityLib.Activities;
 using Common;
 using Image = System.Drawing.Image;
-using TestCase = ActivityLib.TestCase;
-using TestSteps = ActivityLib.TestSteps;
-using TestSuite = ActivityLib.TestSuite;
+using TestCase = ActivityLib.Activities.TestCase;
+using TestSteps = ActivityLib.Activities.TestSteps;
+using TestSuite = ActivityLib.Activities.TestSuite;
 
 namespace Editor
 {

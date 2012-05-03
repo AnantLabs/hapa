@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace ActivityLib
+namespace ActivityLib.Activities
 {
     public class ImageConverter : IValueConverter
     {

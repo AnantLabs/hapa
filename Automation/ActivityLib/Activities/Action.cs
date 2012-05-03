@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Activities;
 using System.ComponentModel;
 using Common;
 
-namespace ActivityLib
+namespace ActivityLib.Activities
 {
     [Designer(typeof (ActionDesigner))]
     public abstract class Action : NativeActivity

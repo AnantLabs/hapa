@@ -4,11 +4,11 @@
                                 xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation" mc:Ignorable="d"
                                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ActivityLib="clr-namespace:ActivityLib"
-                                d:DesignWidth="300" Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                xmlns:Activities="clr-namespace:ActivityLib.Activities" d:DesignWidth="300" Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" AllowDrop="True">
   <sap:ActivityDesigner.Resources>
-    <ActivityLib:ImageConverter x:Key="ResultConverter" />
-    <ActivityLib:DataTreeConverter x:Key="DataTreeConverter" />
+    <Activities:ImageConverter x:Key="ResultConverter" />
+    <Activities:DataTreeConverter x:Key="DataTreeConverter" />
     <DataTemplate x:Key="Collapsed">
       <StackPanel Orientation="Horizontal">
         <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="16" Width="16"

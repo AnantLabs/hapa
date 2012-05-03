@@ -1,8 +1,8 @@
-﻿using System.Activities.Presentation.PropertyEditing;
+using System.Activities.Presentation.PropertyEditing;
 using System.ComponentModel;
 using System.Xml.Linq;
 
-namespace ActivityLib
+namespace ActivityLib.Activities
 {
     public abstract class LeafAction : Action
     {

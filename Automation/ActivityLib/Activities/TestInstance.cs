@@ -1,8 +1,8 @@
-﻿using System.Activities.Hosting;
+using System.Activities.Hosting;
 using System.Xml.Linq;
 using Common;
 
-namespace ActivityLib
+namespace ActivityLib.Activities
 {
     public class TestInstance
     {

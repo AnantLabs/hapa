@@ -3,6 +3,7 @@ using System.Activities;
 using System.Activities.Presentation.PropertyEditing;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Action = ActivityLib.Activities.Action;
 
 namespace ActivityLib
 {
