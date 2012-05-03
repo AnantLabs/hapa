@@ -27,9 +27,7 @@ namespace Common
 
         public static void Set(string key, string value)
         {
-            System.Configuration.Configuration config =
-                ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            AppSettingsSection app = config.AppSettings;
+            ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             ConfigurationManager.AppSettings.Set(key, value);
         }
 
@@ -37,7 +35,7 @@ namespace Common
         {
             foreach (object key in ConfigurationManager.AppSettings.Keys)
             {
-                x.SetAttributeValue(key.ToString(), Settings(key.ToString(), null));
+                x.SetAttributeValue(key.ToString(), Settings(key.ToString()));
             }
         }
 

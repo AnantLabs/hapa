@@ -74,18 +74,18 @@ namespace Editor
         {
             redoMenu.IsEnabled = true;
             _workflowDesigner.Context.Services.GetService<UndoEngine>().Undo();
-            if (_undoEngineService.GetUndoActions().Count() == 0)
+            if (!_undoEngineService.GetUndoActions().Any())
                 undoMenu.IsEnabled = false;
-            if (_undoEngineService.GetRedoActions().Count() > 0)
+            if (_undoEngineService.GetRedoActions().Any())
                 redoMenu.IsEnabled = true;
         }
 
         private void ClickRedoButton(object sender, RoutedEventArgs e)
         {
             _workflowDesigner.Context.Services.GetService<UndoEngine>().Redo();
-            if (_undoEngineService.GetRedoActions().Count() == 0)
+            if (!_undoEngineService.GetRedoActions().Any())
                 redoMenu.IsEnabled = false;
-            if (_undoEngineService.GetUndoActions().Count() > 0)
+            if (_undoEngineService.GetUndoActions().Any())
                 undoMenu.IsEnabled = true;
         }
 

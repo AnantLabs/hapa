@@ -255,7 +255,7 @@ namespace Editor
 
         public static bool HasDefaultConstructor(Type t)
         {
-            return t.GetConstructors().Where(c => c.GetParameters().Length <= 0).Count() > 0;
+            return t.GetConstructors().Any(c => c.GetParameters().Length <= 0);
         }
 
 

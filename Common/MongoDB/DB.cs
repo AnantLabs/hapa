@@ -14,7 +14,7 @@ namespace MongoDB
         private static DB _instance;
         private readonly MongoDatabase _database;
 
-        private readonly Task task;
+        private readonly Task _task;
 
         private DB()
         {
@@ -27,7 +27,7 @@ namespace MongoDB
             //CancellationTokenSource source = new CancellationTokenSource();
             //CancellationToken token = source.Token;
 
-            task = Task.Factory.StartNew(() =>
+            _task = Task.Factory.StartNew(() =>
                                              {
                                                  while (true)
                                                  {
@@ -39,8 +39,7 @@ namespace MongoDB
                                                      cpuUsage = getCPUCOunter();
                                                      if (cpuUsage > 0.10)
                                                          continue;
-                                                     else
-                                                         CleanDataBase();
+                                                     CleanDataBase();
                                                  }
                                              });
 
@@ -140,13 +139,11 @@ namespace MongoDB
 
         private float getCPUCOunter()
         {
-            var cpuCounter = new PerformanceCounter();
-            cpuCounter.CategoryName = "Processor";
-            cpuCounter.CounterName = "% Processor Time";
-            cpuCounter.InstanceName = "_Total";
+            var cpuCounter = new PerformanceCounter
+                                 {CategoryName = "Processor", CounterName = "% Processor Time", InstanceName = "_Total"};
 
             // will always start at 0
-            float firstValue = cpuCounter.NextValue();
+            cpuCounter.NextValue();
             Thread.Sleep(1000);
             // now matches task manager reading
             float secondValue = cpuCounter.NextValue();
@@ -159,8 +156,8 @@ namespace MongoDB
             if (_database.Server != null)
                 _database.Server.Disconnect();
 
-            if (task != null)
-                task.Dispose();
+            if (_task != null)
+                _task.Dispose();
         }
 
         //public T MapReduce<T>(string map, string reduce)
@@ -261,7 +258,7 @@ namespace MongoDB
 
         public void Drop<T>()
         {
-            MongoCollection<T> col = _database.GetCollection<T>(typeof (T).Name);
+            _database.GetCollection<T>(typeof (T).Name);
             _database.DropCollection(typeof (T).Name);
         }
 
