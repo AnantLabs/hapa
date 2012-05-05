@@ -59,6 +59,7 @@
     <Compile Include="TestCase.cs" />
     <Compile Include="TestSteps.cs" />
     <Compile Include="TestSuite.cs" />
+    <Compile Include="Translation.cs" />
     <Compile Include="UIObject.cs" />
     <Compile Include="XElementExtension.cs" />
   </ItemGroup>

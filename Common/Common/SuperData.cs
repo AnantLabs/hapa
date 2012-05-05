@@ -3,22 +3,71 @@ using System.Xml.Linq;
 
 namespace Common
 {
-    public abstract class SuperData
+    public class SuperData
     {
-        //private string _id;
-        public string Id { //get
-            //{
-            //    if (String.IsNullOrEmpty(_id))
-            //        _id = Guid.NewGuid().ToString();
-            //    return _id;
-            //}
-            //set { _id = value; }
-            get; set; }
-
+        private string _id;
+        public string Id { get { return _id; } set { _id = value; } }
         public string ParentId { get; set; }
-        public string DataType { get; set; }
+        //protected string DataType { get; set; }
         public string DisplayName { get; set; }
         public string DisplayIcon { get; set; }
+
+        public SuperData(){}
+        public SuperData(string id, string parentId,string dispalyName)
+        {
+            Id = id;
+            ParentId = parentId;
+            //DataType = dataType;
+            DisplayName = dispalyName;
+        }
+
+        //public static SuperData CreateItem(string itemType)
+        //{
+        //    SuperData superData = null;
+        //    if(itemType.Equals("Project"))
+        //    {
+        //        superData = new Project();
+        //    }
+        //    if(itemType.Equals("Result"))
+        //    {
+        //        superData = new Result();
+        //    }
+        //    if(itemType.Equals("Data"))
+        //    {
+        //        superData = new InputData();
+        //    }
+        //    if(itemType.Equals("Object"))
+        //    {
+        //        superData = new UIObject();
+        //    }
+        //    if(itemType.Equals("TestSuite"))
+        //    {
+        //        superData = new TestSuite();
+        //    }
+        //    if(itemType.Equals("TestCase"))
+        //    {
+        //        superData = new TestCase();
+        //    }
+        //    if(itemType.Equals("TestSteps"))
+        //    {
+        //        superData = new TestSteps();
+        //    }
+        //    if(itemType.Equals("Folder"))
+        //    {
+        //        superData = new Folder();
+        //    }
+        //    if(itemType.Equals("Environment"))
+        //    {
+        //        superData = new Environment();
+        //    }
+
+        //    if (itemType.Equals("Translation"))
+        //    {
+        //        superData = new Translation();
+        //    }
+
+        //    return superData;
+        //}
 
         public static XElement ToXML(SuperData data)
         {

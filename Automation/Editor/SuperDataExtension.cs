@@ -2,7 +2,6 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using ActivityLib;
 using ActivityLib.Activities;
 using Common;
 using MongoDB;
@@ -22,13 +21,17 @@ namespace Editor
             DB.GetInstance().Delete<SuperData>(superData.Id);
         }
 
+        public static SuperData GetById(string id)
+        {
+            return DB.GetInstance().Find<SuperData>(id);
+        }
+
         public static TreeViewItem GetTreeViewItem(this SuperData superData)
         {
             var tvi = new TreeViewItem();
-            var head = new StackPanel {Orientation = Orientation.Horizontal};
+            var head = new StackPanel { Orientation = Orientation.Horizontal };
 
-            var text = new TextBlock
-                           {Text = superData.DisplayName, ToolTip = new ToolTip {Content = "Need further programming"}};
+            var text = new TextBlock { Text = superData.DisplayName, ToolTip = new ToolTip { Content = "Need further programming" } };
 
             AddImageToTreeViewItem(superData, head, text);
             head.Children.Add(text);

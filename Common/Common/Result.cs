@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    public class Result
+    public class Result : SuperData
     {
         public static Result SuccessResult()
         {

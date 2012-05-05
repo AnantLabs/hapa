@@ -182,12 +182,13 @@ namespace MongoDB
 
         public T Find<T>(string id)
         {
-            return Find<T>(Const.AttributeId, id);
+            return Find<T>("_id", id);
         }
 
         public T Find<T>(params string[] param)
         {
-            return _database.GetCollection<T>(typeof (T).Name).FindOne(QueryCondition(param));
+            IMongoQuery query = QueryCondition(param);
+            return _database.GetCollection<T>(typeof (T).Name).FindOne(query);
         }
 
         public List<T> Finds<T>(IMongoQuery qc)
@@ -243,6 +244,7 @@ namespace MongoDB
 
         public void Save<T>(T item)
         {
+            //_database.GetCollection(item.GetType().Name).Save(item);
             _database.GetCollection<T>(typeof (T).Name).Save(item);
         }
 
@@ -253,7 +255,7 @@ namespace MongoDB
 
         public void Delete<T>(string id)
         {
-            _database.GetCollection<T>(typeof (T).Name).Remove(Query.EQ(Const.AttributeId, id));
+            _database.GetCollection<T>(typeof (T).Name).Remove(Query.EQ("_id", id));
         }
 
         public void Drop<T>()

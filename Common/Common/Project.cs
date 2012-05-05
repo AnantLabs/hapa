@@ -4,6 +4,7 @@
     {
         public Project()
         {
+            
             DisplayName = "Project";
             DisplayIcon = "Project";
         }

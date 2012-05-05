@@ -4,6 +4,7 @@
     {
         public UIObject()
         {
+            
             DisplayName = "Object";
             DisplayIcon = "Object";
         }
