@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Activities;
-using System.Xml.Linq;
+using ActivityLib;
 using ActivityLib.Activities;
+using Common;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
-    public class SetResult : LeafAction
+    public class StopInstance : LeafAction
     {
         protected override void Execute(NativeActivityContext context)
         {
-            string commandStr = GetContextValue(context, "command");
-
             try
             {
-                XElement content = XElement.Parse(commandStr);
-                //TODO not implemented yet, related to BookMark
+                string id = GetContextValue(context, Const.AttributeId);
+                InstanceManager.GetInstance().GetTestInstance(id).Stop();
 
                 SetReturnMessage(context, Common.Result.SuccessResult());
             }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Activities;
+using System.Xml.Linq;
 using ActivityLib.Activities;
-using Common;
 
-namespace ActivityLib
+//using MongoDB;
+
+namespace Automation.workflow
 {
-    public class DeleteInstance : LeafAction
+    public class SetData : LeafAction
     {
         protected override void Execute(NativeActivityContext context)
         {
@@ -13,11 +15,8 @@ namespace ActivityLib
 
             try
             {
-                string id = GetContextValue(context, Const.AttributeId);
-                //XElement content = (XElement)XElement.Parse(commandStr);
-
-                InstanceManager.GetInstance().RemoveTestInstance(id);
-
+                var content = (XElement) XElement.Parse(commandStr).FirstNode;
+                //MongoDB.MongoDB.GetInstance()["New"]=content.ToString();
                 SetReturnMessage(context, Common.Result.SuccessResult());
             }
             catch (Exception ex)

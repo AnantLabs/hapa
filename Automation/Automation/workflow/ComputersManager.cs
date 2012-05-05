@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Common;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
     public class ComputersManager
     {

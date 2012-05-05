@@ -177,6 +177,18 @@
       <DependentUpon>Service.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="workflow\ComputersManager.cs" />
+    <Compile Include="workflow\DeleteInstance.cs" />
+    <Compile Include="workflow\GetComputersInfo.cs" />
+    <Compile Include="workflow\GetDataByID.cs" />
+    <Compile Include="workflow\GetInstancesInfo.cs" />
+    <Compile Include="workflow\InstanceManager.cs" />
+    <Compile Include="workflow\RequestCommand.cs" />
+    <Compile Include="workflow\SetData.cs" />
+    <Compile Include="workflow\SetInstanceInfo.cs" />
+    <Compile Include="workflow\SetResult.cs" />
+    <Compile Include="workflow\StartInstance.cs" />
+    <Compile Include="workflow\StopInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

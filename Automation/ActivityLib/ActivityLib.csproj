@@ -100,12 +100,6 @@
     <Compile Include="Activities\TestInstance.cs" />
     <Compile Include="Activities\TestSteps.cs" />
     <Compile Include="Activities\TestSuite.cs" />
-    <Compile Include="ComputersManager.cs" />
-    <Compile Include="DeleteInstance.cs" />
-    <Compile Include="GetComputersInfo.cs" />
-    <Compile Include="GetDataByID.cs" />
-    <Compile Include="GetInstancesInfo.cs" />
-    <Compile Include="InstanceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionDesigner.xaml.cs">
       <DependentUpon>ActionDesigner.xaml</DependentUpon>
@@ -114,12 +108,6 @@
       <DependentUpon>ActionSetDesigner.xaml</DependentUpon>
     </Compile>
     <Compile Include="ActionSet.cs" />
-    <Compile Include="RequestCommand.cs" />
-    <Compile Include="SetData.cs" />
-    <Compile Include="SetInstanceInfo.cs" />
-    <Compile Include="SetResult.cs" />
-    <Compile Include="StartInstance.cs" />
-    <Compile Include="StopInstance.cs" />
     <Compile Include="TreeNodePicker.cs" />
     <Compile Include="XElementTreeViewItem.cs" />
   </ItemGroup>

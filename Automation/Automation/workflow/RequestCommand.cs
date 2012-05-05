@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Activities;
 using System.Xml.Linq;
+using ActivityLib;
 using ActivityLib.Activities;
 using Common;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
     public class RequestCommand : LeafAction
     {

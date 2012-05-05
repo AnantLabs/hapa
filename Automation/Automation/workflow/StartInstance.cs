@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Activities;
+using ActivityLib;
 using ActivityLib.Activities;
 using Common;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
-    public class GetInstancesInfo : LeafAction
+    public class StartInstance : LeafAction
     {
         protected override void Execute(NativeActivityContext context)
         {
             try
             {
-                string instancesInfo = InstanceManager.GetInstance().GetInstances();
-                Result r = Common.Result.SuccessResult();
-                r.attach(instancesInfo);
-                SetReturnMessage(context, r);
+                string id = GetContextValue(context, Const.AttributeId);
+                InstanceManager.GetInstance().GetTestInstance(id).Start();
+                SetReturnMessage(context, Common.Result.SuccessResult());
             }
             catch (Exception ex)
             {

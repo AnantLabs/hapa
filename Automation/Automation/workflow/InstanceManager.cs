@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using ActivityLib.Activities;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
     public class InstanceManager
     {

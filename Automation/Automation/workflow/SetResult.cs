@@ -3,11 +3,9 @@ using System.Activities;
 using System.Xml.Linq;
 using ActivityLib.Activities;
 
-//using MongoDB;
-
-namespace ActivityLib
+namespace Automation.workflow
 {
-    public class SetData : LeafAction
+    public class SetResult : LeafAction
     {
         protected override void Execute(NativeActivityContext context)
         {
@@ -15,8 +13,9 @@ namespace ActivityLib
 
             try
             {
-                var content = (XElement) XElement.Parse(commandStr).FirstNode;
-                //MongoDB.MongoDB.GetInstance()["New"]=content.ToString();
+                XElement content = XElement.Parse(commandStr);
+                //TODO not implemented yet, related to BookMark
+
                 SetReturnMessage(context, Common.Result.SuccessResult());
             }
             catch (Exception ex)

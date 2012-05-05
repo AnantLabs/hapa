@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Activities;
 using System.Xml.Linq;
+using ActivityLib;
 using ActivityLib.Activities;
+using Common;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
-    public class SetInstanceInfo : LeafAction
+    /// <summary>
+    /// 
+    /// Return Registered computer list
+    /// </summary>
+    public class GetComputersInfo : LeafAction
     {
         protected override void Execute(NativeActivityContext context)
         {
+            string commandStr = GetContextValue(context, "command");
+
             try
             {
-                string commandStr = GetContextValue(context, "command");
-
                 XElement content = XElement.Parse(commandStr);
 
-                InstanceManager.GetInstance().UpdateInstance(content);
-                SetReturnMessage(context, Common.Result.SuccessResult());
+                Result r = Common.Result.SuccessResult();
+                r.attach(ComputersManager.GetInstance().ToString());
+                SetReturnMessage(context, r);
             }
             catch (Exception ex)
             {

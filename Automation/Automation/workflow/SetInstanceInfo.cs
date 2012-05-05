@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Activities;
+using System.Xml.Linq;
+using ActivityLib;
 using ActivityLib.Activities;
-using Common;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
-    public class StopInstance : LeafAction
+    public class SetInstanceInfo : LeafAction
     {
         protected override void Execute(NativeActivityContext context)
         {
             try
             {
-                string id = GetContextValue(context, Const.AttributeId);
-                InstanceManager.GetInstance().GetTestInstance(id).Stop();
+                string commandStr = GetContextValue(context, "command");
 
+                XElement content = XElement.Parse(commandStr);
+
+                InstanceManager.GetInstance().UpdateInstance(content);
                 SetReturnMessage(context, Common.Result.SuccessResult());
             }
             catch (Exception ex)

@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Activities;
-using System.Xml.Linq;
 using ActivityLib.Activities;
 using Common;
 
-namespace ActivityLib
+namespace Automation.workflow
 {
-    /// <summary>
-    /// 
-    /// Return Registered computer list
-    /// </summary>
-    public class GetComputersInfo : LeafAction
+    public class GetDataByID : LeafAction
     {
         protected override void Execute(NativeActivityContext context)
         {
-            string commandStr = GetContextValue(context, "command");
-
             try
             {
-                XElement content = XElement.Parse(commandStr);
+                string id = GetContextValue(context, Const.AttributeId);
 
+                string data = ""; // MongoDB.MongoDB.GetInstance()[id];
+                if (string.IsNullOrEmpty(data))
+                {
+                    SetReturnMessage(context, Common.Result.ErrorResult("No such a data in DB, id=" + id));
+                    return;
+                }
                 Result r = Common.Result.SuccessResult();
-                r.attach(ComputersManager.GetInstance().ToString());
+                r.attach(data);
                 SetReturnMessage(context, r);
             }
             catch (Exception ex)
