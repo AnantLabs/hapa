@@ -17,7 +17,7 @@ namespace Common
         {
             Id = id;
             ParentId = parentId;
-            //DataType = dataType;
+            DisplayIcon = dispalyName;
             DisplayName = dispalyName;
         }
 

@@ -74,7 +74,6 @@ namespace Editor
                 //superData.Id = mainId;
                 //superData.ParentId = parentId;
                 //superData.DisplayName = itemNameInConfig;
-                
                 superData.Save();
             }
 

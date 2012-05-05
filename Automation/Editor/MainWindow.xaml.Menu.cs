@@ -109,6 +109,7 @@ namespace Editor
         private void ProjectTreeDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //DoubleClickOnTree(ProjectTreeView);
+            //while double click show its children
         }
 
         private void DataTreeDoubleClick(object sender, MouseButtonEventArgs e)
@@ -122,15 +123,15 @@ namespace Editor
         }
 
 
-        private void ProjectTreeMenuItemNewClicked(object sender, RoutedEventArgs e)
-        {
-            //TODO create a new project
-            var project = new Project();
-            project.DisplayName = "NewProject";
-            project.Id = Guid.NewGuid().ToString();
-            ProjectTreeView.Items.Add(project.GetTreeViewItem());
-            ProjectTreeView.Items.Refresh();
-        }
+        //private void ProjectTreeMenuItemNewClicked(object sender, RoutedEventArgs e)
+        //{
+        //    
+        //    var project = new Project();
+        //    project.DisplayName = "NewProject";
+        //    project.Id = Guid.NewGuid().ToString();
+        //    ProjectTreeView.Items.Add(project.GetTreeViewItem());
+        //    ProjectTreeView.Items.Refresh();
+        //}
 
 
         private void GuiObjectsTreeMenuItemNewClicked(object sender, RoutedEventArgs e)
