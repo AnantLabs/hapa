@@ -11,6 +11,7 @@ namespace MongoDB
 {
     public class DB
     {
+        //TODO think about create an extension class for superdata
         private static DB _instance;
         private readonly MongoDatabase _database;
 
