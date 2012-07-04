@@ -2,6 +2,6 @@
 {
     public interface IAutoObserver
     {
-        void update(string message);
+        string update(string message);
     }
 }

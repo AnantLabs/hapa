@@ -1,6 +1,6 @@
 ﻿namespace AutoClient
 {
-    public class Action
+    public class Action 
     {
         public void Do()
         {
@@ -14,5 +14,7 @@
             //clear ui objects in browser
             //prepare the result
         }
+
+        
     }
 }

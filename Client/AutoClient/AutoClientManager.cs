@@ -86,14 +86,10 @@ namespace AutoClient
             return true;
         }
 
-        public string DoTest()
+        public string DoTest(string content)
         {
-            XElement x = XElement.Parse("<Command Name=\"Register\" />");
-            Configuration.Set("TestKey", "TestValue");
-            Configuration.SaveSettings();
-            AddEnvironmentVarsToXElement(x);
-            Configuration.AddSettingsToXElement(x);
-            return x.ToString();
+
+            return client.Command(content);
         }
 
         private static void AddEnvironmentVarsToXElement(XElement x)

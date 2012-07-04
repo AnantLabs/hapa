@@ -1,6 +1,8 @@
-﻿namespace SeleniumActions
+﻿using AutoClient;
+
+namespace SeleniumActions
 {
-    public class Click
+    public class Click : Action
     {
     }
 }
